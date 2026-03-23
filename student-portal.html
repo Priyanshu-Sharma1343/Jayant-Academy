@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Portal - Jayant Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f5f7fa;
+    color: #333;
+}
+
+.header {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.login-box {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    max-width: 400px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.login-box h2 {
+    color: #4CAF50;
+    margin-bottom: 30px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+.login-box button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.dash-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.dash-card i {
+    font-size: 3em;
+    color: #4CAF50;
+    margin-bottom: 15px;
+}
+
+.dash-card h3 {
+    color: #1e3c72;
+    margin-bottom: 10px;
+}
+
+.section {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.section h2 {
+    color: #1e3c72;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #4CAF50;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th {
+    background: #4CAF50;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+table td {
+    padding: 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.btn {
+    padding: 8px 15px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn:hover {
+    background: #45a049;
+}
+
+.hidden {
+    display: none;
+}
+
+footer {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.back-link {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 10px 20px;
+    background: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.back-link:hover {
+    background: #45a049;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #4CAF50;
+    text-align: center;
+    color: white;
+    font-size: 12px;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1><i class="fas fa-graduation-cap"></i> Student Portal</h1>
+    <p>Jayant Academy - Knowledge Central</p>
+</div>
+
+<div class="container">
+    <div id="loginSection" class="login-box">
+        <h2>Student Login</h2>
+        <input type="text" id="rollno" placeholder="Roll Number" value="001">
+        <input type="password" id="password" placeholder="Password" value="student123">
+        <button onclick="studentLogin()">Login</button>
+    </div>
+
+    <div id="dashboardSection" class="hidden">
+        <button class="back-link" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        
+        <h2 style="color: #1e3c72; font-size: 2em; margin: 30px 0;"><i class="fas fa-user-circle"></i> Welcome, Aman Kumar</h2>
+        
+        <div class="dashboard">
+            <div class="dash-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Current GPA</h3>
+                <p style="font-size: 2em; color: #4CAF50; font-weight: bold;">8.5</p>
+            </div>
+            <div class="dash-card">
+                <i class="fas fa-book"></i>
+                <h3>Assignments</h3>
+                <p style="font-size: 2em; color: #4CAF50; font-weight: bold;">5</p>
+            </div>
+            <div class="dash-card">
+                <i class="fas fa-calendar"></i>
+                <h3>Events</h3>
+                <p style="font-size: 2em; color: #4CAF50; font-weight: bold;">8</p>
+            </div>
+            <div class="dash-card">
+                <i class="fas fa-clock"></i>
+                <h3>Attendance</h3>
+                <p style="font-size: 2em; color: #4CAF50; font-weight: bold;">94%</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Academic Performance</h2>
+            <table>
+                <tr>
+                    <th>Subject</th>
+                    <th>Marks</th>
+                    <th>Grade</th>
+                    <th>Teacher Comment</th>
+                </tr>
+                <tr>
+                    <td>Science</td>
+                    <td>85</td>
+                    <td>A</td>
+                    <td>Excellent work!</td>
+                </tr>
+                <tr>
+                    <td>Mathematics</td>
+                    <td>88</td>
+                    <td>A</td>
+                    <td>Good Problem solving</td>
+                </tr>
+                <tr>
+                    <td>English</td>
+                    <td>82</td>
+                    <td>A</td>
+                    <td>Improve writing</td>
+                </tr>
+                <tr>
+                    <td>Social Studies</td>
+                    <td>80</td>
+                    <td>B+</td>
+                    <td>Good overall</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Assignments</h2>
+            <table>
+                <tr>
+                    <th>Subject</th>
+                    <th>Assignment</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>Science</td>
+                    <td>Chapter 1-2 Practice</td>
+                    <td>22-Mar-2026</td>
+                    <td><span style="color: green;">✓ Submitted</span></td>
+                </tr>
+                <tr>
+                    <td>Maths</td>
+                    <td>Algebra Worksheet</td>
+                    <td>24-Mar-2026</td>
+                    <td><span style="color: orange;">⏳ Due Soon</span></td>
+                </tr>
+                <tr>
+                    <td>English</td>
+                    <td>Essay Writing</td>
+                    <td>28-Mar-2026</td>
+                    <td><span style="color: blue;">📝 Pending</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Study Resources</h2>
+            <p><i class="fas fa-file-pdf" style="color: #ff6b6b;"></i> <a href="#" style="color: #4CAF50; text-decoration: none;">Science Notes - Chapter 1</a></p>
+            <p><i class="fas fa-file-pdf" style="color: #ff6b6b;"></i> <a href="#" style="color: #4CAF50; text-decoration: none;">Maths Formula Sheet</a></p>
+            <p><i class="fas fa-video" style="color: #2196F3;"></i> <a href="#" style="color: #4CAF50; text-decoration: none;">English Grammar Video Tutorial</a></p>
+            <p><i class="fas fa-link"></i> <a href="#" style="color: #4CAF50; text-decoration: none;">History Online Learning Portal</a></p>
+        </div>
+
+        <div class="section">
+            <h2>Attendance Record</h2>
+            <p><strong>Present Days:</strong> 94</p>
+            <p><strong>Absent Days:</strong> 6</p>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 94%;">94%</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Upcoming Events</h2>
+            <table>
+                <tr>
+                    <th>Event</th>
+                    <th>Date</th>
+                    <th>Details</th>
+                </tr>
+                <tr>
+                    <td>Sports Day</td>
+                    <td>November 15</td>
+                    <td>Inter-class competitions</td>
+                </tr>
+                <tr>
+                    <td>Science Fair</td>
+                    <td>February 20</td>
+                    <td>Project exhibitions</td>
+                </tr>
+                <tr>
+                    <td>Annual Day</td>
+                    <td>January 25</td>
+                    <td>Cultural programs</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 Jayant Academy Student Portal | All Rights Reserved</p>
+    <a href="index.html" style="color: white; text-decoration: none; margin-left: 20px;"><i class="fas fa-home"></i> Back to Website</a>
+</footer>
+
+<script>
+function studentLogin() {
+    const rollno = document.getElementById('rollno').value;
+    const password = document.getElementById('password').value;
+    
+    if (rollno.length > 0 && password.length > 5) {
+        document.getElementById('loginSection').classList.add('hidden');
+        document.getElementById('dashboardSection').classList.remove('hidden');
+    } else {
+        alert('Invalid credentials!');
+    }
+}
+
+function logout() {
+    document.getElementById('loginSection').classList.remove('hidden');
+    document.getElementById('dashboardSection').classList.add('hidden');
+}
+</script>
+
+</body>
+</html>

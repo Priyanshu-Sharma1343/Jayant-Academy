@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Portal - Jayant Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f5f7fa;
+    color: #333;
+}
+
+.header {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.login-box {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    max-width: 400px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.login-box h2 {
+    color: #1e3c72;
+    margin-bottom: 30px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+.login-box button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.dash-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.dash-card i {
+    font-size: 3em;
+    color: #ff6b6b;
+    margin-bottom: 15px;
+}
+
+.dash-card h3 {
+    color: #1e3c72;
+    margin-bottom: 10px;
+}
+
+.section {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.section h2 {
+    color: #1e3c72;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #ff6b6b;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th {
+    background: #1e3c72;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+table td {
+    padding: 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.btn {
+    padding: 8px 15px;
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn:hover {
+    background: #ff5252;
+}
+
+.hidden {
+    display: none;
+}
+
+footer {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.back-link {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 10px 20px;
+    background: #2a5298;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.back-link:hover {
+    background: #1e3c72;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1><i class="fas fa-lock"></i> Admin Portal</h1>
+    <p>Jayant Academy - Administration</p>
+</div>
+
+<div class="container">
+    <div id="loginSection" class="login-box">
+        <h2>Admin Login</h2>
+        <input type="text" id="username" placeholder="Username" value="admin">
+        <input type="password" id="password" placeholder="Password" value="admin123">
+        <button onclick="adminLogin()">Login</button>
+    </div>
+
+    <div id="dashboardSection" class="hidden">
+        <button class="back-link" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        
+        <h2 style="color: #1e3c72; font-size: 2em; margin: 30px 0;">Dashboard</h2>
+        
+        <div class="dashboard">
+            <div class="dash-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Total Students</h3>
+                <p style="font-size: 2em; color: #ff6b6b; font-weight: bold;">450</p>
+            </div>
+            <div class="dash-card">
+                <i class="fas fa-chalkboard-user"></i>
+                <h3>Total Staff</h3>
+                <p style="font-size: 2em; color: #ff6b6b; font-weight: bold;">35</p>
+            </div>
+            <div class="dash-card">
+                <i class="fas fa-book"></i>
+                <h3>Active Classes</h3>
+                <p style="font-size: 2em; color: #ff6b6b; font-weight: bold;">12</p>
+            </div>
+            <div class="dash-card">
+                <i class="fas fa-money-bill"></i>
+                <h3>Monthly Revenue</h3>
+                <p style="font-size: 2em; color: #ff6b6b; font-weight: bold;">₹ 15L</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Student Management</h2>
+            <table>
+                <tr>
+                    <th>Roll No</th>
+                    <th>Student Name</th>
+                    <th>Class</th>
+                    <th>Fee Status</th>
+                    <th>Actions</th>
+                </tr>
+                <tr>
+                    <td>001</td>
+                    <td>Aman Kumar</td>
+                    <td>Class VI-A</td>
+                    <td><span style="color: green;">Paid</span></td>
+                    <td><button class="btn">Edit</button></td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>Priya Singh</td>
+                    <td>Class IV-B</td>
+                    <td><span style="color: red;">Pending</span></td>
+                    <td><button class="btn">Edit</button></td>
+                </tr>
+                <tr>
+                    <td>003</td>
+                    <td>Rohit Patel</td>
+                    <td>Class VIII-A</td>
+                    <td><span style="color: green;">Paid</span></td>
+                    <td><button class="btn">Edit</button></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Staff Management</h2>
+            <table>
+                <tr>
+                    <th>Staff ID</th>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Department</th>
+                    <th>Actions</th>
+                </tr>
+                <tr>
+                    <td>ST001</td>
+                    <td>Deepak Kumar</td>
+                    <td>Teacher</td>
+                    <td>Science</td>
+                    <td><button class="btn">Edit</button></td>
+                </tr>
+                <tr>
+                    <td>ST002</td>
+                    <td>Kavita Singh</td>
+                    <td>Teacher</td>
+                    <td>Mathematics</td>
+                    <td><button class="btn">Edit</button></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Fee Collection</h2>
+            <p><strong>Total Fee Collected:</strong> ₹ 32,50,000</p>
+            <p><strong>Pending Fees:</strong> ₹ 5,25,000</p>
+            <p><strong>Collection Rate:</strong> 86.1%</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 Jayant Academy Admin Portal | All Rights Reserved</p>
+    <a href="index.html" style="color: white; text-decoration: none; margin-left: 20px;"><i class="fas fa-home"></i> Back to Website</a>
+</footer>
+
+<script>
+function adminLogin() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    
+    if (username === 'admin' && password === 'admin123') {
+        document.getElementById('loginSection').classList.add('hidden');
+        document.getElementById('dashboardSection').classList.remove('hidden');
+    } else {
+        alert('Invalid credentials! Try admin/admin123');
+    }
+}
+
+function logout() {
+    document.getElementById('loginSection').classList.remove('hidden');
+    document.getElementById('dashboardSection').classList.add('hidden');
+    document.getElementById('username').value = 'admin';
+    document.getElementById('password').value = 'admin123';
+}
+</script>
+
+</body>
+</html>

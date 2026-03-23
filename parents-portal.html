@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parents Portal - Jayant Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f5f7fa;
+    color: #333;
+}
+
+.header {
+    background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.login-box {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    max-width: 400px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.login-box h2 {
+    color: #FF9800;
+    margin-bottom: 30px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #FF9800, #F57C00);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+}
+
+.login-box button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3);
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.dash-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.dash-card i {
+    font-size: 3em;
+    color: #FF9800;
+    margin-bottom: 15px;
+}
+
+.dash-card h3 {
+    color: #1e3c72;
+    margin-bottom: 10px;
+}
+
+.section {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.section h2 {
+    color: #1e3c72;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #FF9800;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th {
+    background: #FF9800;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+table td {
+    padding: 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.btn {
+    padding: 8px 15px;
+    background: #FF9800;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn:hover {
+    background: #F57C00;
+}
+
+.hidden {
+    display: none;
+}
+
+footer {
+    background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.back-link {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 10px 20px;
+    background: #FF9800;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.back-link:hover {
+    background: #F57C00;
+}
+
+.alert-box {
+    background: #FFF3E0;
+    border-left: 4px solid #FF9800;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 5px;
+}
+
+.alert-box strong {
+    color: #E65100;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1><i class="fas fa-heart"></i> Parents Portal</h1>
+    <p>Jayant Academy - Parent Connect</p>
+</div>
+
+<div class="container">
+    <div id="loginSection" class="login-box">
+        <h2>Parent Login</h2>
+        <input type="email" id="email" placeholder="Email ID" value="parent@example.com">
+        <input type="password" id="password" placeholder="Password" value="parent123">
+        <button onclick="parentLogin()">Login</button>
+    </div>
+
+    <div id="dashboardSection" class="hidden">
+        <button class="back-link" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        
+        <h2 style="color: #1e3c72; font-size: 2em; margin: 30px 0;"><i class="fas fa-user-circle"></i> Welcome, Parent</h2>
+        
+        <div class="dashboard">
+            <div class="dash-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Child Name</h3>
+                <p style="font-size: 1.2em; color: #FF9800; font-weight: bold;">Aman Kumar</p>
+            </div>
+            <div class="dash-card">
+                <i class="fas fa-book"></i>
+                <h3>Child Class</h3>
+                <p style="font-size: 1.5em; color: #FF9800; font-weight: bold;">VI-A</p>
+            </div>
+            <div class="dash-card">
+                <i class="fas fa-chart-pie"></i>
+                <h3>Current GPA</h3>
+                <p style="font-size: 1.5em; color: #FF9800; font-weight: bold;">8.5</p>
+            </div>
+            <div class="dash-card">
+                <i class="fas fa-exclamation-circle"></i>
+                <h3>Fee Status</h3>
+                <p style="font-size: 1.2em; color: green; font-weight: bold;">Paid</p>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            <strong><i class="fas fa-bell"></i> Important Notice:</strong> Annual Day Program on January 25, 2026. Student participation is mandatory.
+        </div>
+
+        <div class="section">
+            <h2>Child's Academic Progress</h2>
+            <table>
+                <tr>
+                    <th>Subject</th>
+                    <th>Marks</th>
+                    <th>Grade</th>
+                    <th>Teacher Feedback</th>
+                </tr>
+                <tr>
+                    <td>Science</td>
+                    <td>85</td>
+                    <td>A</td>
+                    <td>Excellent work!</td>
+                </tr>
+                <tr>
+                    <td>Mathematics</td>
+                    <td>88</td>
+                    <td>A</td>
+                    <td>Good Problem solving</td>
+                </tr>
+                <tr>
+                    <td>English</td>
+                    <td>82</td>
+                    <td>A</td>
+                    <td>Improve writing skills</td>
+                </tr>
+                <tr>
+                    <td>Social Studies</td>
+                    <td>80</td>
+                    <td>B+</td>
+                    <td>Good overall</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Attendance Report</h2>
+            <p><strong>Total Working Days:</strong> 100</p>
+            <p><strong>Present Days:</strong> 94</p>
+            <p><strong>Absent Days:</strong> 6</p>
+            <p><strong>Attendance Percentage:</strong> <span style="color: green; font-weight: bold;">94%</span></p>
+            <p style="margin-top: 15px; color: #FF9800;"><strong>Note:</strong> Attendance above 90% is mandatory.</p>
+        </div>
+
+        <div class="section">
+            <h2>Fee Payment</h2>
+            <table>
+                <tr>
+                    <th>Month</th>
+                    <th>Amount</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>January 2026</td>
+                    <td>₹ 5,000</td>
+                    <td>10-Jan-2026</td>
+                    <td><span style="color: green;">✓ Paid</span></td>
+                </tr>
+                <tr>
+                    <td>February 2026</td>
+                    <td>₹ 5,000</td>
+                    <td>10-Feb-2026</td>
+                    <td><span style="color: green;">✓ Paid</span></td>
+                </tr>
+                <tr>
+                    <td>March 2026</td>
+                    <td>₹ 5,000</td>
+                    <td>10-Mar-2026</td>
+                    <td><span style="color: green;">✓ Paid</span></td>
+                </tr>
+            </table>
+            <p style="text-align: center; margin-top: 15px;">
+                <button class="btn"><i class="fas fa-credit-card"></i> Pay Fee Online</button>
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Upcoming Events</h2>
+            <table>
+                <tr>
+                    <th>Event</th>
+                    <th>Date</th>
+                    <th>Details</th>
+                </tr>
+                <tr>
+                    <td>Parent-Teacher Meeting</td>
+                    <td>25-Mar-2026</td>
+                    <td>Discuss child's progress</td>
+                </tr>
+                <tr>
+                    <td>Sports Day</td>
+                    <td>November 15</td>
+                    <td>Inter-class competitions</td>
+                </tr>
+                <tr>
+                    <td>Annual Day</td>
+                    <td>January 25</td>
+                    <td>Celebration & performances</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Contact Teacher</h2>
+            <p><strong>Class Teacher:</strong> Kavita Singh</p>
+            <p><strong>Email:</strong> kavita@jayant.academy</p>
+            <p><strong>Phone:</strong> 9876543210</p>
+            <textarea style="padding: 10px; margin: 10px 0; width: 100%; border: 2px solid #e0e0e0; border-radius: 5px; font-family: 'Poppins';" rows="4" placeholder="Write your message to teacher..."></textarea>
+            <button class="btn">Send Message</button>
+        </div>
+
+        <div class="section">
+            <h2>School Contact</h2>
+            <p><i class="fas fa-phone"></i> <strong>Phone:</strong> <a href="tel:06255220297" style="color: #FF9800; text-decoration: none;">06255-220297</a></p>
+            <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:rxl.jayantacademy@gmail.com" style="color: #FF9800; text-decoration: none;">rxl.jayantacademy@gmail.com</a></p>
+            <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> Near Shyam Mandir, Arya Samaj Road, Raxaul – 845305</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 Jayant Academy Parents Portal | All Rights Reserved</p>
+    <a href="index.html" style="color: white; text-decoration: none; margin-left: 20px;"><i class="fas fa-home"></i> Back to Website</a>
+</footer>
+
+<script>
+function parentLogin() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    
+    if (email.includes('@') && password.length > 5) {
+        document.getElementById('loginSection').classList.add('hidden');
+        document.getElementById('dashboardSection').classList.remove('hidden');
+    } else {
+        alert('Invalid credentials!');
+    }
+}
+
+function logout() {
+    document.getElementById('loginSection').classList.remove('hidden');
+    document.getElementById('dashboardSection').classList.add('hidden');
+}
+</script>
+
+</body>
+</html>
