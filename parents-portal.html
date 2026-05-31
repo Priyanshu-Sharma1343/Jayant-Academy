@@ -1,383 +1,424 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Parents Portal - Jayant Academy</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #f5f7fa;
-    color: #333;
-}
-
-.header {
-    background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-.container {
-    max-width: 1000px;
-    margin: 30px auto;
-    padding: 0 20px;
-}
-
-.login-box {
-    background: white;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    max-width: 400px;
-    margin: 50px auto;
-    text-align: center;
-}
-
-.login-box h2 {
-    color: #FF9800;
-    margin-bottom: 30px;
-}
-
-.login-box input {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
-}
-
-.login-box button {
-    width: 100%;
-    padding: 12px;
-    background: linear-gradient(135deg, #FF9800, #F57C00);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: all 0.3s ease;
-}
-
-.login-box button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3);
-}
-
-.dashboard {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.dash-card {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    text-align: center;
-}
-
-.dash-card i {
-    font-size: 3em;
-    color: #FF9800;
-    margin-bottom: 15px;
-}
-
-.dash-card h3 {
-    color: #1e3c72;
-    margin-bottom: 10px;
-}
-
-.section {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    margin: 20px 0;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-}
-
-.section h2 {
-    color: #1e3c72;
-    margin-bottom: 20px;
-    border-bottom: 3px solid #FF9800;
-    padding-bottom: 10px;
-    display: inline-block;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table th {
-    background: #FF9800;
-    color: white;
-    padding: 12px;
-    text-align: left;
-}
-
-table td {
-    padding: 12px;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.btn {
-    padding: 8px 15px;
-    background: #FF9800;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.btn:hover {
-    background: #F57C00;
-}
-
-.hidden {
-    display: none;
-}
-
-footer {
-    background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: 50px;
-}
-
-.back-link {
-    display: inline-block;
-    margin: 20px 0;
-    padding: 10px 20px;
-    background: #FF9800;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.back-link:hover {
-    background: #F57C00;
-}
-
-.alert-box {
-    background: #FFF3E0;
-    border-left: 4px solid #FF9800;
-    padding: 15px;
-    margin: 15px 0;
-    border-radius: 5px;
-}
-
-.alert-box strong {
-    color: #E65100;
-}
-</style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Parents Portal – Jayant Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--primary:#c2410c;--primary-light:#ea580c;--accent:#f59e0b;--danger:#ef4444;--success:#10b981;--bg:#fff7f0;--white:#fff;--text:#1e293b;--muted:#64748b;--border:#fed7aa;--radius:12px;--shadow:0 2px 16px rgba(194,65,12,.10);--sidebar-w:240px;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;}
+    .sidebar{width:var(--sidebar-w);background:var(--primary);display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;z-index:100;transition:transform .3s;}
+    .sidebar-logo{padding:1.5rem 1.25rem;border-bottom:1px solid rgba(255,255,255,.1);}
+    .sidebar-logo h2{color:#fff;font-size:1.1rem;font-weight:800;}
+    .sidebar-logo span{color:var(--accent);display:block;font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+    .nav-section{padding:.5rem 1rem .25rem;font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);}
+    .nav-item{display:flex;align-items:center;gap:.75rem;padding:.7rem 1.25rem;cursor:pointer;color:rgba(255,255,255,.75);font-size:.88rem;font-weight:600;transition:all .2s;border-left:3px solid transparent;}
+    .nav-item:hover{background:rgba(255,255,255,.08);color:#fff;}
+    .nav-item.active{background:rgba(255,255,255,.12);color:#fff;border-left-color:var(--accent);}
+    .sidebar-footer{padding:1rem 1.25rem;border-top:1px solid rgba(255,255,255,.1);}
+    .main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;}
+    .topbar{background:var(--white);border-bottom:1px solid var(--border);padding:.9rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:0 1px 8px rgba(0,0,0,.06);}
+    .topbar-btn{background:none;border:1.5px solid var(--border);padding:.4rem .9rem;border-radius:8px;font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;color:var(--text);}
+    .topbar-btn.primary{background:var(--primary);color:#fff;border-color:var(--primary);}
+    .content{padding:1.5rem;flex:1;}
+    .page{display:none;}
+    .page.active{display:block;animation:fadeIn .3s ease;}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:1.5rem;}
+    .stat-card{background:var(--white);border-radius:var(--radius);padding:1.25rem;box-shadow:var(--shadow);display:flex;align-items:center;gap:1rem;border-left:4px solid var(--primary);}
+    .stat-card.green{border-left-color:var(--success);}
+    .stat-card.amber{border-left-color:var(--accent);}
+    .stat-card.red{border-left-color:var(--danger);}
+    .stat-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;background:#ffedd5;flex-shrink:0;}
+    .stat-card.green .stat-icon{background:#d1fae5;}
+    .stat-card.amber .stat-icon{background:#fef3c7;}
+    .stat-card.red .stat-icon{background:#fee2e2;}
+    .stat-num{font-size:1.5rem;font-weight:800;line-height:1;}
+    .stat-label{font-size:.75rem;color:var(--muted);font-weight:600;margin-top:.2rem;}
+    .card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:1.25rem;}
+    .card-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+    .card-title{font-size:.95rem;font-weight:800;}
+    .card-body{padding:1.25rem;}
+    table{width:100%;border-collapse:collapse;font-size:.85rem;}
+    th{background:#fff7f0;padding:.7rem 1rem;text-align:left;font-weight:700;font-size:.75rem;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--border);}
+    td{padding:.75rem 1rem;border-bottom:1px solid var(--border);}
+    tr:last-child td{border-bottom:none;}
+    tr:hover td{background:#fff7f0;}
+    .badge{display:inline-block;padding:.2rem .65rem;border-radius:50px;font-size:.72rem;font-weight:700;}
+    .badge.paid{background:#d1fae5;color:#065f46;}
+    .badge.due{background:#fef3c7;color:#92400e;}
+    .badge.overdue{background:#fee2e2;color:#991b1b;}
+    .badge.present{background:#d1fae5;color:#065f46;}
+    .badge.absent{background:#fee2e2;color:#991b1b;}
+    .badge.good{background:#d1fae5;color:#065f46;}
+    .notice-item{padding:.85rem;border-radius:8px;background:var(--bg);border-left:4px solid var(--primary);margin-bottom:.75rem;}
+    .notice-item.urgent{border-left-color:var(--danger);background:#fff5f5;}
+    .subject-card{background:var(--bg);border-radius:10px;padding:1rem;border-left:4px solid var(--primary);margin-bottom:.75rem;}
+    .mark-bar{height:8px;border-radius:50px;background:var(--border);margin:.35rem 0;}
+    .mark-fill{height:100%;border-radius:50px;}
+    .form-group{margin-bottom:1rem;}
+    label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);margin-bottom:.35rem;}
+    input,select,textarea{width:100%;padding:.65rem .9rem;border:1.5px solid var(--border);border-radius:8px;font-family:'Nunito',sans-serif;font-size:.88rem;color:var(--text);background:#fff;outline:none;transition:border-color .2s;}
+    input:focus,select:focus,textarea:focus{border-color:var(--primary);}
+    .btn{padding:.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s;}
+    .btn-primary{background:var(--primary);color:#fff;}
+    .btn-primary:hover{background:var(--primary-light);}
+    #loginOverlay{position:fixed;inset:0;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;z-index:999;}
+    .login-box{background:#fff;border-radius:20px;padding:2.5rem;width:90%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:fadeIn .4s ease;}
+    .login-logo{text-align:center;margin-bottom:1.5rem;}
+    .login-logo h2{color:var(--primary);font-size:1.4rem;font-weight:800;}
+    .login-logo p{color:var(--muted);font-size:.85rem;}
+    .login-btn{width:100%;padding:.85rem;background:var(--primary);color:#fff;border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;cursor:pointer;}
+    #toast{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--primary);color:#fff;padding:.75rem 1.25rem;border-radius:10px;font-size:.88rem;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9999;}
+    #toast.show{opacity:1;}
+    .hamburger{display:none;background:none;border:none;cursor:pointer;padding:.25rem;}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--text);margin:4px 0;border-radius:2px;}
+    @media(max-width:768px){.sidebar{transform:translateX(-100%)}.sidebar.open{transform:none}.main{margin-left:0}.hamburger{display:block}}
+    @media(max-width:480px){.stats-grid{grid-template-columns:1fr 1fr;}}
+  </style>
 </head>
 <body>
 
-<div class="header">
-    <h1><i class="fas fa-heart"></i> Parents Portal</h1>
-    <p>Jayant Academy - Parent Connect</p>
+<!-- LOGIN -->
+<div id="loginOverlay">
+  <div class="login-box">
+    <div class="login-logo"><h2>🏫 Jayant Academy</h2><p>Parents Portal — Login</p></div>
+    <div class="form-group"><label>Phone / Parent ID</label><input id="loginUser" placeholder="9876543210" value="9876543210"/></div>
+    <div class="form-group"><label>Password</label><input id="loginPass" type="password" placeholder="••••••" value="parent123"/></div>
+    <p style="font-size:.75rem;color:var(--muted);margin-bottom:1rem;">Demo: Phone <b>9876543210</b> / password <b>parent123</b></p>
+    <button class="login-btn" onclick="doLogin()">Login to Parents Portal</button>
+  </div>
 </div>
 
-<div class="container">
-    <div id="loginSection" class="login-box">
-        <h2>Parent Login</h2>
-        <input type="email" id="email" placeholder="Email ID" value="parent@example.com">
-        <input type="password" id="password" placeholder="Password" value="parent123">
-        <button onclick="parentLogin()">Login</button>
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo"><h2>🏫 Jayant Academy</h2><span>Parents Portal</span></div>
+  <nav style="flex:1;padding:1rem 0;overflow-y:auto;">
+    <div class="nav-section">Main</div>
+    <div class="nav-item active" onclick="showPage('dashboard',this)"><span>🏠</span> Dashboard</div>
+    <div class="nav-section">Child Info</div>
+    <div class="nav-item" onclick="showPage('progress',this)"><span>📊</span> Academic Progress</div>
+    <div class="nav-item" onclick="showPage('attendance',this)"><span>✅</span> Attendance</div>
+    <div class="nav-item" onclick="showPage('timetable',this)"><span>🗓️</span> Timetable</div>
+    <div class="nav-section">Finance</div>
+    <div class="nav-item" onclick="showPage('fees',this)"><span>💰</span> Fee Payment</div>
+    <div class="nav-section">Communication</div>
+    <div class="nav-item" onclick="showPage('notices',this)"><span>📢</span> Notices</div>
+    <div class="nav-item" onclick="showPage('contact',this)"><span>📞</span> Contact School</div>
+    <div class="nav-section">Account</div>
+    <div class="nav-item" onclick="showPage('profile',this)"><span>👤</span> My Profile</div>
+  </nav>
+  <div class="sidebar-footer">
+    <div style="display:flex;align-items:center;gap:.75rem;">
+      <div style="width:36px;height:36px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--primary);font-size:.9rem;">S</div>
+      <div>
+        <div style="color:#fff;font-size:.85rem;font-weight:700;">Suresh Kumar</div>
+        <div style="color:rgba(255,255,255,.5);font-size:.72rem;">Parent of Aman Kumar</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="topbar">
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <button class="hamburger" onclick="document.getElementById('sidebar').classList.toggle('open')"><span></span><span></span><span></span></button>
+      <span style="font-size:1.1rem;font-weight:800;" id="pageTitle">Dashboard</span>
+    </div>
+    <div style="display:flex;gap:1rem;align-items:center;">
+      <span style="font-size:.82rem;color:var(--muted);">📅 Jun 1, 2026</span>
+      <button class="topbar-btn primary" onclick="doLogout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- DASHBOARD -->
+    <div class="page active" id="page-dashboard">
+      <div style="background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:16px;padding:1.5rem;margin-bottom:1.5rem;color:#fff;">
+        <div style="font-size:1.2rem;font-weight:800;margin-bottom:.25rem;">Namaste, Suresh Ji! 🙏</div>
+        <div style="font-size:.88rem;opacity:.85;">Your child: <b>Aman Kumar</b> · Class VI-A · Roll No. 001</div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card green"><div class="stat-icon">📊</div><div><div class="stat-num">83%</div><div class="stat-label">Overall Score</div></div></div>
+        <div class="stat-card"><div class="stat-icon">✅</div><div><div class="stat-num">91%</div><div class="stat-label">Attendance</div></div></div>
+        <div class="stat-card amber"><div class="stat-icon">💰</div><div><div class="stat-num">₹7.5K</div><div class="stat-label">Fee Due</div></div></div>
+        <div class="stat-card red"><div class="stat-icon">📢</div><div><div class="stat-num">2</div><div class="stat-label">New Notices</div></div></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
+        <div class="card">
+          <div class="card-header"><span class="card-title">📊 Recent Performance</span></div>
+          <div class="card-body">
+            <div class="subject-card">
+              <div style="display:flex;justify-content:space-between;"><span style="font-weight:700;font-size:.88rem;">🔬 Science</span><span style="font-weight:800;color:var(--success);">92/100</span></div>
+              <div class="mark-bar"><div class="mark-fill" style="width:92%;background:var(--success)"></div></div>
+            </div>
+            <div class="subject-card">
+              <div style="display:flex;justify-content:space-between;"><span style="font-weight:700;font-size:.88rem;">📐 Mathematics</span><span style="font-weight:800;color:var(--primary);">88/100</span></div>
+              <div class="mark-bar"><div class="mark-fill" style="width:88%;background:var(--primary)"></div></div>
+            </div>
+            <div class="subject-card">
+              <div style="display:flex;justify-content:space-between;"><span style="font-weight:700;font-size:.88rem;">📖 English</span><span style="font-weight:800;color:var(--accent);">76/100</span></div>
+              <div class="mark-bar"><div class="mark-fill" style="width:76%;background:var(--accent)"></div></div>
+            </div>
+            <div style="text-align:center;margin-top:.75rem;">
+              <button class="btn btn-primary" onclick="showPage('progress',document.querySelector('[onclick*=progress]'))">View Full Report</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><span class="card-title">📢 Important Notices</span></div>
+          <div class="card-body">
+            <div class="notice-item urgent"><div style="font-weight:700;font-size:.88rem;">🚨 PTM — June 5, 2026</div><div style="font-size:.75rem;color:var(--muted);">Please attend · 2 days ago</div></div>
+            <div class="notice-item"><div style="font-weight:700;font-size:.88rem;">📚 Summer Vacation: Jun 15–Jul 10</div><div style="font-size:.75rem;color:var(--muted);">5 days ago</div></div>
+            <div class="notice-item"><div style="font-weight:700;font-size:.88rem;">💰 June Fee Due: June 10</div><div style="font-size:.75rem;color:var(--muted);">Last date approaching</div></div>
+            <div style="text-align:center;margin-top:.75rem;">
+              <button class="btn btn-primary" onclick="showPage('fees',document.querySelector('[onclick*=fees]'))">Pay Fee Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div id="dashboardSection" class="hidden">
-        <button class="back-link" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
-        
-        <h2 style="color: #1e3c72; font-size: 2em; margin: 30px 0;"><i class="fas fa-user-circle"></i> Welcome, Parent</h2>
-        
-        <div class="dashboard">
-            <div class="dash-card">
-                <i class="fas fa-graduation-cap"></i>
-                <h3>Child Name</h3>
-                <p style="font-size: 1.2em; color: #FF9800; font-weight: bold;">Aman Kumar</p>
-            </div>
-            <div class="dash-card">
-                <i class="fas fa-book"></i>
-                <h3>Child Class</h3>
-                <p style="font-size: 1.5em; color: #FF9800; font-weight: bold;">VI-A</p>
-            </div>
-            <div class="dash-card">
-                <i class="fas fa-chart-pie"></i>
-                <h3>Current GPA</h3>
-                <p style="font-size: 1.5em; color: #FF9800; font-weight: bold;">8.5</p>
-            </div>
-            <div class="dash-card">
-                <i class="fas fa-exclamation-circle"></i>
-                <h3>Fee Status</h3>
-                <p style="font-size: 1.2em; color: green; font-weight: bold;">Paid</p>
-            </div>
+    <!-- PROGRESS -->
+    <div class="page" id="page-progress">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">📊 Academic Progress — Aman Kumar</span>
+          <select style="font-size:.82rem;width:auto;"><option>Term 1 (2025-26)</option><option>Term 2</option><option>Annual (2024-25)</option></select>
         </div>
-
-        <div class="alert-box">
-            <strong><i class="fas fa-bell"></i> Important Notice:</strong> Annual Day Program on January 25, 2026. Student participation is mandatory.
+        <div class="card-body">
+          <div style="background:linear-gradient(135deg,#d1fae5,#a7f3d0);border-radius:12px;padding:1rem;margin-bottom:1.25rem;display:flex;justify-content:space-between;align-items:center;">
+            <div><div style="font-size:1.1rem;font-weight:800;color:#065f46;">Overall: 416/500</div><div style="color:#047857;font-size:.85rem;">Grade A · 83.2%</div></div>
+            <div style="font-size:2.5rem;font-weight:800;color:#065f46;">🏅</div>
+          </div>
+          <div class="subject-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:700;">📐 Mathematics</span><span style="font-weight:800;color:var(--primary);">88/100 — Grade A</span></div>
+            <div class="mark-bar"><div class="mark-fill" style="width:88%;background:var(--primary)"></div></div>
+            <div style="font-size:.75rem;color:var(--muted);">Class Rank: 3rd · Teacher: Mrs. Kavita Singh</div>
+          </div>
+          <div class="subject-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:700;">🔬 Science</span><span style="font-weight:800;color:var(--success);">92/100 — Grade A+</span></div>
+            <div class="mark-bar"><div class="mark-fill" style="width:92%;background:var(--success)"></div></div>
+            <div style="font-size:.75rem;color:var(--muted);">Class Rank: 1st 🏆 · Teacher: Mr. Deepak Kumar</div>
+          </div>
+          <div class="subject-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:700;">📖 English</span><span style="font-weight:800;color:var(--accent);">76/100 — Grade B</span></div>
+            <div class="mark-bar"><div class="mark-fill" style="width:76%;background:var(--accent)"></div></div>
+            <div style="font-size:.75rem;color:var(--muted);">Class Rank: 8th · Needs improvement in grammar</div>
+          </div>
+          <div class="subject-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:700;">📜 Hindi</span><span style="font-weight:800;color:var(--primary);">81/100 — Grade A</span></div>
+            <div class="mark-bar"><div class="mark-fill" style="width:81%;background:var(--primary)"></div></div>
+            <div style="font-size:.75rem;color:var(--muted);">Class Rank: 5th · Teacher: Mrs. Priya Sharma</div>
+          </div>
+          <div class="subject-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:700;">🌍 Social Studies</span><span style="font-weight:800;color:var(--success);">79/100 — Grade B+</span></div>
+            <div class="mark-bar"><div class="mark-fill" style="width:79%;background:var(--success)"></div></div>
+            <div style="font-size:.75rem;color:var(--muted);">Class Rank: 6th · Teacher: Mr. Rajesh Gupta</div>
+          </div>
+          <div style="margin-top:1rem;padding:1rem;background:var(--bg);border-radius:10px;">
+            <div style="font-weight:700;font-size:.88rem;margin-bottom:.5rem;">📝 Teacher's Remark:</div>
+            <div style="font-size:.88rem;color:var(--muted);">"Aman is a bright student with excellent performance in Science. He should focus more on English grammar and writing skills."</div>
+          </div>
         </div>
-
-        <div class="section">
-            <h2>Child's Academic Progress</h2>
-            <table>
-                <tr>
-                    <th>Subject</th>
-                    <th>Marks</th>
-                    <th>Grade</th>
-                    <th>Teacher Feedback</th>
-                </tr>
-                <tr>
-                    <td>Science</td>
-                    <td>85</td>
-                    <td>A</td>
-                    <td>Excellent work!</td>
-                </tr>
-                <tr>
-                    <td>Mathematics</td>
-                    <td>88</td>
-                    <td>A</td>
-                    <td>Good Problem solving</td>
-                </tr>
-                <tr>
-                    <td>English</td>
-                    <td>82</td>
-                    <td>A</td>
-                    <td>Improve writing skills</td>
-                </tr>
-                <tr>
-                    <td>Social Studies</td>
-                    <td>80</td>
-                    <td>B+</td>
-                    <td>Good overall</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="section">
-            <h2>Attendance Report</h2>
-            <p><strong>Total Working Days:</strong> 100</p>
-            <p><strong>Present Days:</strong> 94</p>
-            <p><strong>Absent Days:</strong> 6</p>
-            <p><strong>Attendance Percentage:</strong> <span style="color: green; font-weight: bold;">94%</span></p>
-            <p style="margin-top: 15px; color: #FF9800;"><strong>Note:</strong> Attendance above 90% is mandatory.</p>
-        </div>
-
-        <div class="section">
-            <h2>Fee Payment</h2>
-            <table>
-                <tr>
-                    <th>Month</th>
-                    <th>Amount</th>
-                    <th>Due Date</th>
-                    <th>Status</th>
-                </tr>
-                <tr>
-                    <td>January 2026</td>
-                    <td>₹ 5,000</td>
-                    <td>10-Jan-2026</td>
-                    <td><span style="color: green;">✓ Paid</span></td>
-                </tr>
-                <tr>
-                    <td>February 2026</td>
-                    <td>₹ 5,000</td>
-                    <td>10-Feb-2026</td>
-                    <td><span style="color: green;">✓ Paid</span></td>
-                </tr>
-                <tr>
-                    <td>March 2026</td>
-                    <td>₹ 5,000</td>
-                    <td>10-Mar-2026</td>
-                    <td><span style="color: green;">✓ Paid</span></td>
-                </tr>
-            </table>
-            <p style="text-align: center; margin-top: 15px;">
-                <button class="btn"><i class="fas fa-credit-card"></i> Pay Fee Online</button>
-            </p>
-        </div>
-
-        <div class="section">
-            <h2>Upcoming Events</h2>
-            <table>
-                <tr>
-                    <th>Event</th>
-                    <th>Date</th>
-                    <th>Details</th>
-                </tr>
-                <tr>
-                    <td>Parent-Teacher Meeting</td>
-                    <td>25-Mar-2026</td>
-                    <td>Discuss child's progress</td>
-                </tr>
-                <tr>
-                    <td>Sports Day</td>
-                    <td>November 15</td>
-                    <td>Inter-class competitions</td>
-                </tr>
-                <tr>
-                    <td>Annual Day</td>
-                    <td>January 25</td>
-                    <td>Celebration & performances</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="section">
-            <h2>Contact Teacher</h2>
-            <p><strong>Class Teacher:</strong> Kavita Singh</p>
-            <p><strong>Email:</strong> kavita@jayant.academy</p>
-            <p><strong>Phone:</strong> 9876543210</p>
-            <textarea style="padding: 10px; margin: 10px 0; width: 100%; border: 2px solid #e0e0e0; border-radius: 5px; font-family: 'Poppins';" rows="4" placeholder="Write your message to teacher..."></textarea>
-            <button class="btn">Send Message</button>
-        </div>
-
-        <div class="section">
-            <h2>School Contact</h2>
-            <p><i class="fas fa-phone"></i> <strong>Phone:</strong> <a href="tel:06255220297" style="color: #FF9800; text-decoration: none;">06255-220297</a></p>
-            <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:rxl.jayantacademy@gmail.com" style="color: #FF9800; text-decoration: none;">rxl.jayantacademy@gmail.com</a></p>
-            <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> Near Shyam Mandir, Arya Samaj Road, Raxaul – 845305</p>
-        </div>
+      </div>
     </div>
+
+    <!-- ATTENDANCE -->
+    <div class="page" id="page-attendance">
+      <div class="stats-grid">
+        <div class="stat-card green"><div class="stat-icon">✅</div><div><div class="stat-num">91%</div><div class="stat-label">Attendance</div></div></div>
+        <div class="stat-card"><div class="stat-icon">📅</div><div><div class="stat-num">112</div><div class="stat-label">Days Present</div></div></div>
+        <div class="stat-card red"><div class="stat-icon">❌</div><div><div class="stat-num">11</div><div class="stat-label">Days Absent</div></div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title">✅ Aman's Attendance Record</span></div>
+        <div class="card-body">
+          <table>
+            <thead><tr><th>Date</th><th>Day</th><th>Status</th><th>Remark</th></tr></thead>
+            <tbody>
+              <tr><td>31 May</td><td>Saturday</td><td><span class="badge present">Present</span></td><td>—</td></tr>
+              <tr><td>30 May</td><td>Friday</td><td><span class="badge present">Present</span></td><td>—</td></tr>
+              <tr><td>29 May</td><td>Thursday</td><td><span class="badge absent">Absent</span></td><td>Sick – Fever</td></tr>
+              <tr><td>28 May</td><td>Wednesday</td><td><span class="badge present">Present</span></td><td>—</td></tr>
+              <tr><td>27 May</td><td>Tuesday</td><td><span class="badge present">Present</span></td><td>—</td></tr>
+              <tr><td>26 May</td><td>Monday</td><td><span class="badge present">Present</span></td><td>—</td></tr>
+              <tr><td>24 May</td><td>Saturday</td><td><span class="badge present">Present</span></td><td>—</td></tr>
+              <tr><td>23 May</td><td>Friday</td><td><span class="badge absent">Absent</span></td><td>Family function</td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:1rem;padding:.75rem;background:#fef3c7;border-radius:8px;border-left:4px solid var(--accent);font-size:.85rem;font-weight:600;color:#92400e;">
+            ⚠️ Minimum 75% attendance required. Current: 91% ✅
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIMETABLE -->
+    <div class="page" id="page-timetable">
+      <div class="card">
+        <div class="card-header"><span class="card-title">🗓️ Class VI-A Timetable</span></div>
+        <div class="card-body" style="overflow-x:auto;">
+          <div style="display:grid;grid-template-columns:70px repeat(6,1fr);gap:3px;font-size:.78rem;min-width:560px;">
+            <div style="background:var(--primary);color:#fff;padding:.5rem;border-radius:6px;font-weight:700;text-align:center;">Time</div>
+            <div style="background:var(--primary);color:#fff;padding:.5rem;border-radius:6px;font-weight:700;text-align:center;">Mon</div>
+            <div style="background:var(--primary);color:#fff;padding:.5rem;border-radius:6px;font-weight:700;text-align:center;">Tue</div>
+            <div style="background:var(--primary);color:#fff;padding:.5rem;border-radius:6px;font-weight:700;text-align:center;">Wed</div>
+            <div style="background:var(--primary);color:#fff;padding:.5rem;border-radius:6px;font-weight:700;text-align:center;">Thu</div>
+            <div style="background:var(--primary);color:#fff;padding:.5rem;border-radius:6px;font-weight:700;text-align:center;">Fri</div>
+            <div style="background:var(--primary);color:#fff;padding:.5rem;border-radius:6px;font-weight:700;text-align:center;">Sat</div>
+            <div style="background:#ffedd5;padding:.45rem;border-radius:6px;font-weight:700;color:var(--primary);text-align:center;display:flex;align-items:center;justify-content:center;">8:30</div>
+            <div style="background:#fff;border:1px solid var(--border);padding:.45rem;border-radius:6px;text-align:center;font-weight:600;">Math</div>
+            <div style="background:#fff;border:1px solid var(--border);padding:.45rem;border-radius:6px;text-align:center;font-weight:600;">English</div>
+            <div style="background:#fff;border:1px solid var(--border);padding:.45rem;border-radius:6px;text-align:center;font-weight:600;">Science</div>
+            <div style="background:#fff;border:1px solid var(--border);padding:.45rem;border-radius:6px;text-align:center;font-weight:600;">Hindi</div>
+            <div style="background:#fff;border:1px solid var(--border);padding:.45rem;border-radius:6px;text-align:center;font-weight:600;">Math</div>
+            <div style="background:#fff;border:1px solid var(--border);padding:.45rem;border-radius:6px;text-align:center;font-weight:600;">S.Studies</div>
+            <div style="background:#ffedd5;padding:.45rem;border-radius:6px;font-weight:700;color:var(--primary);text-align:center;display:flex;align-items:center;justify-content:center;">9:20</div>
+            <div style="background:#fff;border:1px solid var(--border);padding:.45rem;border-radius:6px;text-align:center;font-weight:600;">English</div>
+            <div style="background:#fff;border:1px solid var(--border);padding:.45rem;border-radius:6px;text-align:center;font-weight:600;">Math</div>
+            <div style="background:#fff;border:1px solid var(--border);padding:.45rem;border-radius:6px;text-align:center;font-weight:600;">Hindi</div>
+            <div style="background:#fff;border:1px solid var(--border);padding:.45rem;border-radius:6px;text-align:center;font-weight:600;">Math</div>
+            <div style="background:#fff;border:1px solid var(--border);padding:.45rem;border-radius:6px;text-align:center;font-weight:600;">Science</div>
+            <div style="background:#fff;border:1px solid var(--border);padding:.45rem;border-radius:6px;text-align:center;font-weight:600;">Computer</div>
+            <div style="background:#ffedd5;padding:.45rem;border-radius:6px;font-weight:700;color:var(--primary);text-align:center;display:flex;align-items:center;justify-content:center;">10:30</div>
+            <div style="background:#fff;border:1px solid var(--border);padding:.45rem;border-radius:6px;text-align:center;font-weight:600;">Science</div>
+            <div style="background:#fff;border:1px solid var(--border);padding:.45rem;border-radius:6px;text-align:center;font-weight:600;">S.Studies</div>
+            <div style="background:#fff;border:1px solid var(--border);padding:.45rem;border-radius:6px;text-align:center;font-weight:600;">Math</div>
+            <div style="background:#fff;border:1px solid var(--border);padding:.45rem;border-radius:6px;text-align:center;font-weight:600;">English</div>
+            <div style="background:#fff;border:1px solid var(--border);padding:.45rem;border-radius:6px;text-align:center;font-weight:600;">Hindi</div>
+            <div style="background:#fff;border:1px solid var(--border);padding:.45rem;border-radius:6px;text-align:center;font-weight:600;">Math</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEES -->
+    <div class="page" id="page-fees">
+      <div class="card">
+        <div class="card-header"><span class="card-title">💰 Fee Payment — Aman Kumar</span></div>
+        <div class="card-body">
+          <div style="background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:12px;padding:1.25rem;color:#fff;margin-bottom:1.25rem;display:flex;justify-content:space-between;align-items:center;">
+            <div><div style="font-size:1rem;font-weight:800;">Annual Fee 2025-26</div><div style="font-size:.85rem;opacity:.85;">Class VI · ₹80,000/year</div></div>
+            <div style="text-align:right;"><div style="font-size:1.4rem;font-weight:800;">₹72,500</div><div style="font-size:.75rem;opacity:.85;">Paid so far</div></div>
+          </div>
+          <table>
+            <thead><tr><th>Month</th><th>Amount</th><th>Due Date</th><th>Paid On</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>April 2026</td><td>₹7,500</td><td>5 Apr</td><td>1 Apr</td><td><span class="badge paid">Paid</span></td></tr>
+              <tr><td>May 2026</td><td>₹7,500</td><td>5 May</td><td>2 May</td><td><span class="badge paid">Paid</span></td></tr>
+              <tr><td>June 2026</td><td>₹7,500</td><td>10 Jun</td><td>—</td><td><span class="badge due">Due</span></td></tr>
+              <tr><td>July 2026</td><td>₹7,500</td><td>5 Jul</td><td>—</td><td><span class="badge due">Upcoming</span></td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:1.25rem;padding:1.25rem;background:var(--bg);border-radius:12px;">
+            <div style="font-weight:800;margin-bottom:1rem;font-size:.92rem;">Pay June Fee — ₹7,500</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+              <div class="form-group"><label>Payment Method</label>
+                <select id="payMethod"><option>UPI</option><option>Net Banking</option><option>Debit Card</option><option>Cash (Office)</option></select>
+              </div>
+              <div class="form-group"><label>Amount</label><input value="₹7,500" readonly style="background:#f8fafc;"/></div>
+            </div>
+            <button class="btn btn-primary" onclick="showToast('✅ Payment of ₹7,500 initiated! Check your UPI app.')">Pay Now ₹7,500</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTICES -->
+    <div class="page" id="page-notices">
+      <div class="card">
+        <div class="card-header"><span class="card-title">📢 Notice Board</span></div>
+        <div class="card-body">
+          <div class="notice-item urgent"><div style="font-weight:700;">🚨 PTM Scheduled — June 5, 2026 (Thursday)</div><div style="font-size:.75rem;color:var(--muted);">Time: 10 AM – 1 PM · Venue: School Hall · All parents must attend · 2 days ago</div></div>
+          <div class="notice-item"><div style="font-weight:700;">📚 Summer Vacation: June 15 – July 10, 2026</div><div style="font-size:.75rem;color:var(--muted);">School reopens July 11 · 5 days ago</div></div>
+          <div class="notice-item"><div style="font-weight:700;">💰 June Fee Due Reminder — Last date June 10</div><div style="font-size:.75rem;color:var(--muted);">Pay online or at school office · 1 week ago</div></div>
+          <div class="notice-item"><div style="font-weight:700;">🏆 Annual Sports Day — November 2026</div><div style="font-size:.75rem;color:var(--muted);">Student registrations open · 1 week ago</div></div>
+          <div class="notice-item"><div style="font-weight:700;">📋 Term 2 Exam Schedule — Starting July 20</div><div style="font-size:.75rem;color:var(--muted);">Timetable will be shared soon · 2 weeks ago</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="page" id="page-contact">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
+        <div class="card">
+          <div class="card-header"><span class="card-title">📞 School Contact</span></div>
+          <div class="card-body">
+            <div class="notice-item"><div style="font-weight:700;">📞 Phone</div><div style="font-size:.85rem;color:var(--muted);margin-top:.25rem;">+91 89330 06408</div></div>
+            <div class="notice-item"><div style="font-weight:700;">📧 Email</div><div style="font-size:.85rem;color:var(--muted);margin-top:.25rem;">decodelabs.tech@gmail.com</div></div>
+            <div class="notice-item"><div style="font-weight:700;">📍 Address</div><div style="font-size:.85rem;color:var(--muted);margin-top:.25rem;">Jayant Academy, Greater Lucknow, Uttar Pradesh</div></div>
+            <div class="notice-item"><div style="font-weight:700;">🕐 Office Hours</div><div style="font-size:.85rem;color:var(--muted);margin-top:.25rem;">Mon–Sat: 8:00 AM – 3:00 PM</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="card-title">✉️ Send Message to School</span></div>
+          <div class="card-body">
+            <div class="form-group"><label>Subject</label>
+              <select><option>General Enquiry</option><option>Fee Related</option><option>Academic Issue</option><option>Attendance Issue</option><option>PTM Request</option><option>Other</option></select>
+            </div>
+            <div class="form-group"><label>Message</label>
+              <textarea id="contactMsg" rows="4" placeholder="Write your message here..."></textarea>
+            </div>
+            <button class="btn btn-primary" onclick="sendMsg()">Send Message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="page" id="page-profile">
+      <div class="card">
+        <div class="card-header"><span class="card-title">👤 Parent Profile</span></div>
+        <div class="card-body">
+          <div style="display:flex;align-items:center;gap:1.5rem;margin-bottom:1.5rem;">
+            <div style="width:80px;height:80px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff;font-weight:800;">S</div>
+            <div>
+              <div style="font-size:1.3rem;font-weight:800;">Suresh Kumar</div>
+              <div style="color:var(--muted);font-size:.88rem;">Parent of Aman Kumar · Class VI-A</div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div class="form-group"><label>Full Name</label><input value="Suresh Kumar"/></div>
+            <div class="form-group"><label>Relation</label><select><option>Father</option><option>Mother</option><option>Guardian</option></select></div>
+            <div class="form-group"><label>Phone</label><input value="9876543210"/></div>
+            <div class="form-group"><label>Email</label><input value="suresh@email.com"/></div>
+            <div class="form-group"><label>Occupation</label><input value="Business"/></div>
+            <div class="form-group"><label>Aadhaar No.</label><input value="**** **** 1234"/></div>
+          </div>
+          <button class="btn btn-primary" style="margin-top:1rem;" onclick="showToast('✅ Profile updated!')">Save Changes</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<footer>
-    <p>&copy; 2026 Jayant Academy Parents Portal | All Rights Reserved</p>
-    <a href="index.html" style="color: white; text-decoration: none; margin-left: 20px;"><i class="fas fa-home"></i> Back to Website</a>
-</footer>
-
+<div id="toast"></div>
 <script>
-function parentLogin() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    
-    if (email.includes('@') && password.length > 5) {
-        document.getElementById('loginSection').classList.add('hidden');
-        document.getElementById('dashboardSection').classList.remove('hidden');
-    } else {
-        alert('Invalid credentials!');
-    }
-}
-
-function logout() {
-    document.getElementById('loginSection').classList.remove('hidden');
-    document.getElementById('dashboardSection').classList.add('hidden');
-}
+  function doLogin(){document.getElementById('loginOverlay').style.display='none';}
+  function doLogout(){document.getElementById('loginOverlay').style.display='flex';}
+  function showPage(id,el){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    document.getElementById('page-'+id).classList.add('active');
+    if(el)el.classList.add('active');
+    const t={dashboard:'Dashboard',progress:'Academic Progress',attendance:'Attendance',timetable:'Timetable',fees:'Fee Payment',notices:'Notices',contact:'Contact School',profile:'My Profile'};
+    document.getElementById('pageTitle').textContent=t[id]||id;
+  }
+  function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+  function sendMsg(){
+    const msg=document.getElementById('contactMsg').value.trim();
+    if(!msg){showToast('Please write a message!');return;}
+    document.getElementById('contactMsg').value='';
+    showToast('✅ Message sent to school successfully!');
+  }
 </script>
-
 </body>
 </html>
