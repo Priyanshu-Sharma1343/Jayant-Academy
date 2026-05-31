@@ -1,1 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Portal – Jayant Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary: #1a3c5e;
+      --primary-light: #2563a8;
+      --accent: #f59e0b;
+      --danger: #ef4444;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --bg: #f0f4f8;
+      --sidebar-w: 240px;
+      --white: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 2px 16px rgba(26,60,94,0.10);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;}
+
+    /* SIDEBAR */
+    .sidebar{
+      width:var(--sidebar-w);background:var(--primary);
+      display:flex;flex-direction:column;
+      position:fixed;top:0;left:0;height:100vh;
+      z-index:100;transition:transform .3s;
+    }
+    .sidebar-logo{
+      padding:1.5rem 1.25rem;
+      border-bottom:1px solid rgba(255,255,255,.1);
+    }
+    .sidebar-logo h2{color:var(--white);font-size:1.1rem;font-weight:800;line-height:1.3;}
+    .sidebar-logo span{color:var(--accent);display:block;font-size:.75rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;}
+    .sidebar-nav{flex:1;padding:1rem 0;overflow-y:auto;}
+    .nav-section{padding:.5rem 1rem .25rem;font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);}
+    .nav-item{
+      display:flex;align-items:center;gap:.75rem;
+      padding:.7rem 1.25rem;cursor:pointer;
+      color:rgba(255,255,255,.75);font-size:.88rem;font-weight:600;
+      transition:all .2s;border-left:3px solid transparent;
+    }
+    .nav-item:hover{background:rgba(255,255,255,.08);color:var(--white);}
+    .nav-item.active{background:rgba(255,255,255,.12);color:var(--white);border-left-color:var(--accent);}
+    .nav-item .icon{font-size:1.1rem;width:20px;text-align:center;}
+    .sidebar-footer{padding:1rem 1.25rem;border-top:1px solid rgba(255,255,255,.1);}
+    .admin-info{display:flex;align-items:center;gap:.75rem;}
+    .admin-avatar{width:36px;height:36px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--primary);font-size:.9rem;}
+    .admin-name{color:var(--white);font-size:.85rem;font-weight:700;}
+    .admin-role{color:rgba(255,255,255,.5);font-size:.72rem;}
+
+    /* MAIN */
+    .main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;min-height:100vh;}
+
+    /* TOPBAR */
+    .topbar{
+      background:var(--white);border-bottom:1px solid var(--border);
+      padding:.9rem 1.5rem;display:flex;align-items:center;justify-content:space-between;
+      position:sticky;top:0;z-index:50;box-shadow:0 1px 8px rgba(0,0,0,.06);
+    }
+    .topbar-left{display:flex;align-items:center;gap:1rem;}
+    .page-title{font-size:1.1rem;font-weight:800;color:var(--text);}
+    .topbar-right{display:flex;align-items:center;gap:1rem;}
+    .topbar-btn{
+      background:none;border:1.5px solid var(--border);
+      padding:.4rem .9rem;border-radius:8px;
+      font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:700;
+      cursor:pointer;color:var(--text);transition:all .2s;
+    }
+    .topbar-btn:hover{border-color:var(--primary);color:var(--primary);}
+    .topbar-btn.primary{background:var(--primary);color:var(--white);border-color:var(--primary);}
+    .topbar-btn.primary:hover{background:var(--primary-light);}
+    .notif-badge{position:relative;}
+    .notif-badge::after{content:'3';position:absolute;top:-6px;right:-6px;background:var(--danger);color:var(--white);font-size:.6rem;font-weight:800;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+
+    /* CONTENT */
+    .content{padding:1.5rem;flex:1;}
+
+    /* SECTION PAGES */
+    .page{display:none;}
+    .page.active{display:block;animation:fadeIn .3s ease;}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+    /* STATS GRID */
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:1.5rem;}
+    .stat-card{
+      background:var(--white);border-radius:var(--radius);padding:1.25rem;
+      box-shadow:var(--shadow);display:flex;align-items:center;gap:1rem;
+      border-left:4px solid var(--primary);
+    }
+    .stat-card.green{border-left-color:var(--success);}
+    .stat-card.amber{border-left-color:var(--accent);}
+    .stat-card.red{border-left-color:var(--danger);}
+    .stat-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;background:#e8f0fe;flex-shrink:0;}
+    .stat-card.green .stat-icon{background:#d1fae5;}
+    .stat-card.amber .stat-icon{background:#fef3c7;}
+    .stat-card.red .stat-icon{background:#fee2e2;}
+    .stat-num{font-size:1.6rem;font-weight:800;line-height:1;}
+    .stat-label{font-size:.78rem;color:var(--muted);font-weight:600;margin-top:.2rem;}
+
+    /* CARD */
+    .card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:1.25rem;}
+    .card-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+    .card-title{font-size:.95rem;font-weight:800;color:var(--text);}
+    .card-body{padding:1.25rem;}
+
+    /* TABLE */
+    .table-wrap{overflow-x:auto;}
+    table{width:100%;border-collapse:collapse;font-size:.85rem;}
+    th{background:#f8fafc;padding:.7rem 1rem;text-align:left;font-weight:700;font-size:.75rem;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--border);}
+    td{padding:.75rem 1rem;border-bottom:1px solid var(--border);color:var(--text);}
+    tr:last-child td{border-bottom:none;}
+    tr:hover td{background:#f8fafc;}
+    .badge{display:inline-block;padding:.2rem .65rem;border-radius:50px;font-size:.72rem;font-weight:700;}
+    .badge.paid{background:#d1fae5;color:#065f46;}
+    .badge.pending{background:#fef3c7;color:#92400e;}
+    .badge.active{background:#dbeafe;color:#1e40af;}
+    .badge.leave{background:#fee2e2;color:#991b1b;}
+    .action-btn{
+      padding:.3rem .75rem;border-radius:6px;border:none;
+      font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;
+      cursor:pointer;transition:all .2s;margin-right:.3rem;
+    }
+    .action-btn.edit{background:#dbeafe;color:#1e40af;}
+    .action-btn.delete{background:#fee2e2;color:#991b1b;}
+    .action-btn.view{background:#f0fdf4;color:#166534;}
+    .action-btn:hover{filter:brightness(.92);}
+
+    /* FORM */
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    .form-group{display:flex;flex-direction:column;gap:.35rem;}
+    .form-group.full{grid-column:1/-1;}
+    label{font-size:.78rem;font-weight:700;color:var(--muted);letter-spacing:.3px;}
+    input,select,textarea{
+      padding:.65rem .9rem;border:1.5px solid var(--border);border-radius:8px;
+      font-family:'Nunito',sans-serif;font-size:.88rem;color:var(--text);
+      background:var(--white);outline:none;transition:border-color .2s,box-shadow .2s;
+    }
+    input:focus,select:focus,textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(26,60,94,.1);}
+    .form-actions{display:flex;gap:.75rem;margin-top:1rem;}
+    .btn{
+      padding:.6rem 1.4rem;border-radius:8px;border:none;
+      font-family:'Nunito',sans-serif;font-size:.88rem;font-weight:700;
+      cursor:pointer;transition:all .2s;
+    }
+    .btn-primary{background:var(--primary);color:var(--white);}
+    .btn-primary:hover{background:var(--primary-light);}
+    .btn-outline{background:none;border:1.5px solid var(--border);color:var(--text);}
+    .btn-outline:hover{border-color:var(--primary);color:var(--primary);}
+
+    /* NOTICE BOARD */
+    .notice-item{padding:.85rem;border-radius:8px;background:#f8fafc;border-left:4px solid var(--primary);margin-bottom:.75rem;}
+    .notice-item.urgent{border-left-color:var(--danger);background:#fff5f5;}
+    .notice-title{font-weight:700;font-size:.9rem;margin-bottom:.2rem;}
+    .notice-meta{font-size:.75rem;color:var(--muted);}
+
+    /* FEE SUMMARY */
+    .fee-bar{height:10px;border-radius:50px;background:var(--border);margin:.5rem 0;}
+    .fee-bar-fill{height:100%;border-radius:50px;background:var(--success);}
+
+    /* LOGIN OVERLAY */
+    #loginOverlay{
+      position:fixed;inset:0;background:linear-gradient(135deg,var(--primary),var(--primary-light));
+      display:flex;align-items:center;justify-content:center;z-index:999;
+    }
+    .login-box{
+      background:var(--white);border-radius:20px;padding:2.5rem;
+      width:90%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.3);
+      animation:fadeIn .4s ease;
+    }
+    .login-logo{text-align:center;margin-bottom:1.5rem;}
+    .login-logo h2{color:var(--primary);font-size:1.4rem;font-weight:800;}
+    .login-logo p{color:var(--muted);font-size:.85rem;margin-top:.25rem;}
+    .login-box .form-group{margin-bottom:1rem;}
+    .login-btn{width:100%;padding:.85rem;background:var(--primary);color:var(--white);border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;cursor:pointer;transition:background .2s;}
+    .login-btn:hover{background:var(--primary-light);}
+    .login-error{color:var(--danger);font-size:.82rem;text-align:center;margin-top:.5rem;display:none;}
+
+    /* HAMBURGER */
+    .hamburger{display:none;background:none;border:none;cursor:pointer;padding:.25rem;}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--text);margin:4px 0;border-radius:2px;transition:.3s;}
+
+    /* TOAST */
+    #toast{
+      position:fixed;bottom:1.5rem;right:1.5rem;
+      background:var(--primary);color:var(--white);
+      padding:.75rem 1.25rem;border-radius:10px;
+      font-size:.88rem;font-weight:700;
+      opacity:0;transition:opacity .3s;pointer-events:none;z-index:9999;
+    }
+    #toast.show{opacity:1;}
+
+    /* RESPONSIVE */
+    @media(max-width:768px){
+      .sidebar{transform:translateX(-100%);}
+      .sidebar.open{transform:none;}
+      .main{margin-left:0;}
+      .hamburger{display:block;}
+      .stats-grid{grid-template-columns:1fr 1fr;}
+      .form-grid{grid-template-columns:1fr;}
+    }
+    @media(max-width:480px){
+      .stats-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN OVERLAY -->
+<div id="loginOverlay">
+  <div class="login-box">
+    <div class="login-logo">
+      <h2>🏫 Jayant Academy</h2>
+      <p>Admin Portal — Secure Login</p>
+    </div>
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" id="loginUser" placeholder="admin" value="admin"/>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="loginPass" placeholder="••••••••" value="admin123"/>
+    </div>
+    <p style="font-size:.75rem;color:var(--muted);margin-bottom:1rem;">Demo: username <b>admin</b> / password <b>admin123</b></p>
+    <button class="login-btn" onclick="doLogin()">Login to Admin Portal</button>
+    <p class="login-error" id="loginError">Invalid credentials. Please try again.</p>
+  </div>
+</div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <h2>🏫 Jayant Academy</h2>
+    <span>Admin Portal</span>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">Main</div>
+    <div class="nav-item active" onclick="showPage('dashboard',this)"><span class="icon">📊</span> Dashboard</div>
+    <div class="nav-section">Management</div>
+    <div class="nav-item" onclick="showPage('students',this)"><span class="icon">🎓</span> Students</div>
+    <div class="nav-item" onclick="showPage('staff',this)"><span class="icon">👨‍🏫</span> Staff</div>
+    <div class="nav-item" onclick="showPage('classes',this)"><span class="icon">🏫</span> Classes</div>
+    <div class="nav-section">Finance</div>
+    <div class="nav-item" onclick="showPage('fees',this)"><span class="icon">💰</span> Fee Collection</div>
+    <div class="nav-section">Communication</div>
+    <div class="nav-item" onclick="showPage('notices',this)"><span class="icon">📢</span> Notice Board</div>
+    <div class="nav-item" onclick="showPage('addStudent',this)"><span class="icon">➕</span> Add Student</div>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="admin-info">
+      <div class="admin-avatar">A</div>
+      <div>
+        <div class="admin-name">Admin User</div>
+        <div class="admin-role">Super Administrator</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-left">
+      <button class="hamburger" id="menuBtn" onclick="toggleSidebar()">
+        <span></span><span></span><span></span>
+      </button>
+      <span class="page-title" id="pageTitle">Dashboard</span>
+    </div>
+    <div class="topbar-right">
+      <button class="topbar-btn notif-badge" onclick="showToast('3 new notifications')">🔔</button>
+      <button class="topbar-btn primary" onclick="doLogout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- DASHBOARD -->
+    <div class="page active" id="page-dashboard">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">🎓</div>
+          <div><div class="stat-num">450</div><div class="stat-label">Total Students</div></div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-icon">👨‍🏫</div>
+          <div><div class="stat-num">35</div><div class="stat-label">Total Staff</div></div>
+        </div>
+        <div class="stat-card amber">
+          <div class="stat-icon">🏫</div>
+          <div><div class="stat-num">12</div><div class="stat-label">Active Classes</div></div>
+        </div>
+        <div class="stat-card red">
+          <div class="stat-icon">💰</div>
+          <div><div class="stat-num">₹15L</div><div class="stat-label">Monthly Revenue</div></div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
+        <div class="card">
+          <div class="card-header"><span class="card-title">📋 Recent Admissions</span></div>
+          <div class="card-body">
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Name</th><th>Class</th><th>Date</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td>Aman Kumar</td><td>VI-A</td><td>28 May</td><td><span class="badge active">Active</span></td></tr>
+                  <tr><td>Priya Singh</td><td>IV-B</td><td>27 May</td><td><span class="badge active">Active</span></td></tr>
+                  <tr><td>Rohit Patel</td><td>VIII-A</td><td>26 May</td><td><span class="badge active">Active</span></td></tr>
+                  <tr><td>Sneha Gupta</td><td>II-A</td><td>25 May</td><td><span class="badge pending">Pending</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="card-title">💰 Fee Collection Summary</span></div>
+          <div class="card-body">
+            <div style="margin-bottom:1rem;">
+              <div style="display:flex;justify-content:space-between;font-size:.85rem;font-weight:700;"><span>Total Collected</span><span style="color:var(--success)">₹32,50,000</span></div>
+              <div class="fee-bar"><div class="fee-bar-fill" style="width:86%"></div></div>
+              <div style="font-size:.75rem;color:var(--muted);">86.1% collection rate</div>
+            </div>
+            <div style="margin-bottom:1rem;">
+              <div style="display:flex;justify-content:space-between;font-size:.85rem;font-weight:700;"><span>Pending</span><span style="color:var(--danger)">₹5,25,000</span></div>
+              <div class="fee-bar"><div class="fee-bar-fill" style="width:14%;background:var(--danger)"></div></div>
+            </div>
+            <div style="text-align:center;margin-top:1.5rem;">
+              <button class="btn btn-primary" onclick="showPage('fees',document.querySelector('[onclick*=fees]'))">View Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span class="card-title">📢 Latest Notices</span></div>
+        <div class="card-body">
+          <div class="notice-item urgent"><div class="notice-title">🚨 PTM Scheduled — June 5, 2026</div><div class="notice-meta">Posted by Admin · 2 days ago</div></div>
+          <div class="notice-item"><div class="notice-title">📚 Summer Vacation: June 15 – July 10</div><div class="notice-meta">Posted by Admin · 5 days ago</div></div>
+          <div class="notice-item"><div class="notice-title">🏆 Annual Sports Day — November 2026</div><div class="notice-meta">Posted by Admin · 1 week ago</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STUDENTS -->
+    <div class="page" id="page-students">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">🎓 Student Management</span>
+          <button class="btn btn-primary" onclick="showPage('addStudent',document.querySelector('[onclick*=addStudent]'))">+ Add Student</button>
+        </div>
+        <div class="card-body">
+          <div style="margin-bottom:1rem;display:flex;gap:.75rem;flex-wrap:wrap;">
+            <input type="text" placeholder="🔍 Search student..." style="flex:1;min-width:180px;" oninput="filterTable(this,'studentTable')"/>
+            <select style="width:140px;"><option>All Classes</option><option>Nursery</option><option>Class I-V</option><option>Class VI-VIII</option><option>Class IX-X</option></select>
+          </div>
+          <div class="table-wrap">
+            <table id="studentTable">
+              <thead><tr><th>Roll No</th><th>Name</th><th>Class</th><th>Parent</th><th>Phone</th><th>Fee Status</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr><td>001</td><td>Aman Kumar</td><td>VI-A</td><td>Suresh Kumar</td><td>9876543210</td><td><span class="badge paid">Paid</span></td><td><button class="action-btn view" onclick="showToast('Viewing Aman Kumar')">View</button><button class="action-btn edit" onclick="showToast('Editing Aman Kumar')">Edit</button><button class="action-btn delete" onclick="showToast('Deleted!')">Del</button></td></tr>
+                <tr><td>002</td><td>Priya Singh</td><td>IV-B</td><td>Ramesh Singh</td><td>9876543211</td><td><span class="badge pending">Pending</span></td><td><button class="action-btn view" onclick="showToast('Viewing Priya Singh')">View</button><button class="action-btn edit" onclick="showToast('Editing Priya Singh')">Edit</button><button class="action-btn delete" onclick="showToast('Deleted!')">Del</button></td></tr>
+                <tr><td>003</td><td>Rohit Patel</td><td>VIII-A</td><td>Mohan Patel</td><td>9876543212</td><td><span class="badge paid">Paid</span></td><td><button class="action-btn view" onclick="showToast('Viewing Rohit Patel')">View</button><button class="action-btn edit" onclick="showToast('Editing Rohit Patel')">Edit</button><button class="action-btn delete" onclick="showToast('Deleted!')">Del</button></td></tr>
+                <tr><td>004</td><td>Sneha Gupta</td><td>II-A</td><td>Vijay Gupta</td><td>9876543213</td><td><span class="badge pending">Pending</span></td><td><button class="action-btn view" onclick="showToast('Viewing Sneha Gupta')">View</button><button class="action-btn edit" onclick="showToast('Editing Sneha Gupta')">Edit</button><button class="action-btn delete" onclick="showToast('Deleted!')">Del</button></td></tr>
+                <tr><td>005</td><td>Arjun Mishra</td><td>X-A</td><td>Dinesh Mishra</td><td>9876543214</td><td><span class="badge paid">Paid</span></td><td><button class="action-btn view" onclick="showToast('Viewing Arjun Mishra')">View</button><button class="action-btn edit" onclick="showToast('Editing Arjun Mishra')">Edit</button><button class="action-btn delete" onclick="showToast('Deleted!')">Del</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAFF -->
+    <div class="page" id="page-staff">
+      <div class="card">
+        <div class="card-header"><span class="card-title">👨‍🏫 Staff Management</span><button class="btn btn-primary" onclick="showToast('Add Staff form opened')">+ Add Staff</button></div>
+        <div class="card-body">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Staff ID</th><th>Name</th><th>Position</th><th>Department</th><th>Phone</th><th>Status</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr><td>ST001</td><td>Deepak Kumar</td><td>Teacher</td><td>Science</td><td>9876541001</td><td><span class="badge active">Active</span></td><td><button class="action-btn edit" onclick="showToast('Editing Deepak Kumar')">Edit</button><button class="action-btn delete" onclick="showToast('Deleted!')">Del</button></td></tr>
+                <tr><td>ST002</td><td>Kavita Singh</td><td>Teacher</td><td>Mathematics</td><td>9876541002</td><td><span class="badge active">Active</span></td><td><button class="action-btn edit" onclick="showToast('Editing Kavita Singh')">Edit</button><button class="action-btn delete" onclick="showToast('Deleted!')">Del</button></td></tr>
+                <tr><td>ST003</td><td>Priya Sharma</td><td>Teacher</td><td>English</td><td>9876541003</td><td><span class="badge active">Active</span></td><td><button class="action-btn edit" onclick="showToast('Editing Priya Sharma')">Edit</button><button class="action-btn delete" onclick="showToast('Deleted!')">Del</button></td></tr>
+                <tr><td>ST004</td><td>Rajesh Gupta</td><td>Sr. Teacher</td><td>Social Studies</td><td>9876541004</td><td><span class="badge leave">On Leave</span></td><td><button class="action-btn edit" onclick="showToast('Editing Rajesh Gupta')">Edit</button><button class="action-btn delete" onclick="showToast('Deleted!')">Del</button></td></tr>
+                <tr><td>ST005</td><td>Anita Verma</td><td>Coordinator</td><td>Administration</td><td>9876541005</td><td><span class="badge active">Active</span></td><td><button class="action-btn edit" onclick="showToast('Editing Anita Verma')">Edit</button><button class="action-btn delete" onclick="showToast('Deleted!')">Del</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLASSES -->
+    <div class="page" id="page-classes">
+      <div class="stats-grid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));">
+        <div class="stat-card"><div class="stat-icon">👶</div><div><div class="stat-num">3</div><div class="stat-label">Nursery/KG</div></div></div>
+        <div class="stat-card green"><div class="stat-icon">📖</div><div><div class="stat-num">5</div><div class="stat-label">Class I-V</div></div></div>
+        <div class="stat-card amber"><div class="stat-icon">🔬</div><div><div class="stat-num">3</div><div class="stat-label">Class VI-VIII</div></div></div>
+        <div class="stat-card red"><div class="stat-icon">🎯</div><div><div class="stat-num">2</div><div class="stat-label">Class IX-X</div></div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title">🏫 Class Overview</span></div>
+        <div class="card-body">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Class</th><th>Teacher</th><th>Students</th><th>Timing</th><th>Annual Fee</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr><td>Nursery</td><td>Ms. Sunita Devi</td><td>22</td><td>8:30-12:30</td><td>₹45,000</td><td><button class="action-btn view" onclick="showToast('Viewing Nursery class')">View</button></td></tr>
+                <tr><td>Class I</td><td>Mrs. Anjali Mishra</td><td>32</td><td>8:30-1:30</td><td>₹65,000</td><td><button class="action-btn view" onclick="showToast('Viewing Class I')">View</button></td></tr>
+                <tr><td>Class V</td><td>Mrs. Deepti</td><td>35</td><td>8:30-1:30</td><td>₹65,000</td><td><button class="action-btn view" onclick="showToast('Viewing Class V')">View</button></td></tr>
+                <tr><td>Class VIII</td><td>Mr. Vikrant Sharma</td><td>38</td><td>8:30-2:30</td><td>₹80,000</td><td><button class="action-btn view" onclick="showToast('Viewing Class VIII')">View</button></td></tr>
+                <tr><td>Class X</td><td>Mrs. Neha Gupta</td><td>40</td><td>8:30-2:30</td><td>₹95,000</td><td><button class="action-btn view" onclick="showToast('Viewing Class X')">View</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEES -->
+    <div class="page" id="page-fees">
+      <div class="stats-grid">
+        <div class="stat-card green"><div class="stat-icon">✅</div><div><div class="stat-num">₹32.5L</div><div class="stat-label">Collected</div></div></div>
+        <div class="stat-card red"><div class="stat-icon">⏳</div><div><div class="stat-num">₹5.25L</div><div class="stat-label">Pending</div></div></div>
+        <div class="stat-card amber"><div class="stat-icon">📊</div><div><div class="stat-num">86.1%</div><div class="stat-label">Collection Rate</div></div></div>
+        <div class="stat-card"><div class="stat-icon">👥</div><div><div class="stat-num">388</div><div class="stat-label">Paid Students</div></div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title">💰 Fee Records</span></div>
+        <div class="card-body">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Student</th><th>Class</th><th>Amount</th><th>Date</th><th>Method</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>Aman Kumar</td><td>VI-A</td><td>₹80,000</td><td>1 Apr 2026</td><td>UPI</td><td><span class="badge paid">Paid</span></td></tr>
+                <tr><td>Priya Singh</td><td>IV-B</td><td>₹65,000</td><td>—</td><td>—</td><td><span class="badge pending">Pending</span></td></tr>
+                <tr><td>Rohit Patel</td><td>VIII-A</td><td>₹80,000</td><td>3 Apr 2026</td><td>Cash</td><td><span class="badge paid">Paid</span></td></tr>
+                <tr><td>Arjun Mishra</td><td>X-A</td><td>₹95,000</td><td>2 Apr 2026</td><td>Bank</td><td><span class="badge paid">Paid</span></td></tr>
+                <tr><td>Sneha Gupta</td><td>II-A</td><td>₹65,000</td><td>—</td><td>—</td><td><span class="badge pending">Pending</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTICES -->
+    <div class="page" id="page-notices">
+      <div class="card">
+        <div class="card-header"><span class="card-title">📢 Notice Board</span><button class="btn btn-primary" onclick="addNotice()">+ Add Notice</button></div>
+        <div class="card-body">
+          <div id="noticeList">
+            <div class="notice-item urgent"><div class="notice-title">🚨 PTM Scheduled — June 5, 2026</div><div class="notice-meta">Posted by Admin · 2 days ago · Visible to: All</div></div>
+            <div class="notice-item"><div class="notice-title">📚 Summer Vacation: June 15 – July 10, 2026</div><div class="notice-meta">Posted by Admin · 5 days ago · Visible to: All</div></div>
+            <div class="notice-item"><div class="notice-title">🏆 Annual Sports Day — November 2026 Registration Open</div><div class="notice-meta">Posted by Admin · 1 week ago · Visible to: Students</div></div>
+            <div class="notice-item"><div class="notice-title">💰 Fee Due Reminder — Last date June 10</div><div class="notice-meta">Posted by Admin · 1 week ago · Visible to: Parents</div></div>
+          </div>
+          <div style="margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--border);">
+            <p style="font-size:.85rem;font-weight:700;margin-bottom:.75rem;">Post New Notice</p>
+            <div class="form-grid">
+              <div class="form-group"><label>Title</label><input type="text" id="noticeTitle" placeholder="Notice title..."/></div>
+              <div class="form-group"><label>Visible To</label><select id="noticeAudience"><option>All</option><option>Students</option><option>Parents</option><option>Staff</option></select></div>
+            </div>
+            <div class="form-actions"><button class="btn btn-primary" onclick="addNotice()">Post Notice</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADD STUDENT -->
+    <div class="page" id="page-addStudent">
+      <div class="card">
+        <div class="card-header"><span class="card-title">➕ Add New Student</span></div>
+        <div class="card-body">
+          <div class="form-grid">
+            <div class="form-group"><label>First Name *</label><input type="text" placeholder="e.g. Aman"/></div>
+            <div class="form-group"><label>Last Name *</label><input type="text" placeholder="e.g. Kumar"/></div>
+            <div class="form-group"><label>Date of Birth</label><input type="date"/></div>
+            <div class="form-group"><label>Gender</label><select><option>Male</option><option>Female</option><option>Other</option></select></div>
+            <div class="form-group"><label>Class *</label><select><option>Nursery</option><option>LKG</option><option>UKG</option><option>Class I</option><option>Class II</option><option>Class III</option><option>Class IV</option><option>Class V</option><option>Class VI</option><option>Class VII</option><option>Class VIII</option><option>Class IX</option><option>Class X</option></select></div>
+            <div class="form-group"><label>Section</label><select><option>A</option><option>B</option><option>C</option></select></div>
+            <div class="form-group"><label>Parent Name *</label><input type="text" placeholder="Father/Mother name"/></div>
+            <div class="form-group"><label>Phone Number *</label><input type="tel" placeholder="9876543210"/></div>
+            <div class="form-group"><label>Email</label><input type="email" placeholder="parent@email.com"/></div>
+            <div class="form-group"><label>Aadhaar No.</label><input type="text" placeholder="1234 5678 9012"/></div>
+            <div class="form-group full"><label>Address</label><textarea rows="2" placeholder="Full address..."></textarea></div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" onclick="showToast('✅ Student added successfully!')">Save Student</button>
+            <button class="btn btn-outline" onclick="showPage('students',document.querySelector('[onclick*=students]'))">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<div id="toast"></div>
+
+<script>
+  // Login
+  function doLogin(){
+    const u=document.getElementById('loginUser').value;
+    const p=document.getElementById('loginPass').value;
+    if(u==='admin'&&p==='admin123'){
+      document.getElementById('loginOverlay').style.display='none';
+    } else {
+      document.getElementById('loginError').style.display='block';
+    }
+  }
+  document.getElementById('loginPass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+
+  function doLogout(){
+    document.getElementById('loginOverlay').style.display='flex';
+    document.getElementById('loginError').style.display='none';
+  }
+
+  // Page navigation
+  function showPage(id, el){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    document.getElementById('page-'+id).classList.add('active');
+    if(el) el.classList.add('active');
+    const titles={dashboard:'Dashboard',students:'Student Management',staff:'Staff Management',classes:'Classes',fees:'Fee Collection',notices:'Notice Board',addStudent:'Add New Student'};
+    document.getElementById('pageTitle').textContent=titles[id]||id;
+    if(window.innerWidth<768) document.getElementById('sidebar').classList.remove('open');
+  }
+
+  // Sidebar toggle
+  function toggleSidebar(){
+    document.getElementById('sidebar').classList.toggle('open');
+  }
+
+  // Toast
+  function showToast(msg){
+    const t=document.getElementById('toast');
+    t.textContent=msg; t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),2500);
+  }
+
+  // Table filter
+  function filterTable(inp, tableId){
+    const val=inp.value.toLowerCase();
+    document.querySelectorAll('#'+tableId+' tbody tr').forEach(row=>{
+      row.style.display=row.textContent.toLowerCase().includes(val)?'':'none';
+    });
+  }
+
+  // Add notice
+  function addNotice(){
+    const title=document.getElementById('noticeTitle').value.trim();
+    const audience=document.getElementById('noticeAudience').value;
+    if(!title){showToast('Please enter a notice title!');return;}
+    const div=document.createElement('div');
+    div.className='notice-item';
+    div.innerHTML=`<div class="notice-title">📌 ${title}</div><div class="notice-meta">Posted by Admin · Just now · Visible to: ${audience}</div>`;
+    document.getElementById('noticeList').prepend(div);
+    document.getElementById('noticeTitle').value='';
+    showToast('✅ Notice posted!');
+  }
+</script>
+</body>
+</html>
 
