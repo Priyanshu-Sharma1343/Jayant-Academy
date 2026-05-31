@@ -1,324 +1,336 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Staff Portal - Jayant Academy</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #f5f7fa;
-    color: #333;
-}
-
-.header {
-    background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-.container {
-    max-width: 1000px;
-    margin: 30px auto;
-    padding: 0 20px;
-}
-
-.login-box {
-    background: white;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    max-width: 400px;
-    margin: 50px auto;
-    text-align: center;
-}
-
-.login-box h2 {
-    color: #2a5298;
-    margin-bottom: 30px;
-}
-
-.login-box input {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
-}
-
-.login-box button {
-    width: 100%;
-    padding: 12px;
-    background: linear-gradient(135deg, #2a5298, #1e3c72);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: all 0.3s ease;
-}
-
-.login-box button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(42, 82, 152, 0.3);
-}
-
-.dashboard {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.dash-card {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    text-align: center;
-}
-
-.dash-card i {
-    font-size: 3em;
-    color: #2a5298;
-    margin-bottom: 15px;
-}
-
-.dash-card h3 {
-    color: #1e3c72;
-    margin-bottom: 10px;
-}
-
-.section {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    margin: 20px 0;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-}
-
-.section h2 {
-    color: #1e3c72;
-    margin-bottom: 20px;
-    border-bottom: 3px solid #2a5298;
-    padding-bottom: 10px;
-    display: inline-block;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table th {
-    background: #2a5298;
-    color: white;
-    padding: 12px;
-    text-align: left;
-}
-
-table td {
-    padding: 12px;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.btn {
-    padding: 8px 15px;
-    background: #2a5298;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.btn:hover {
-    background: #1e3c72;
-}
-
-.hidden {
-    display: none;
-}
-
-footer {
-    background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: 50px;
-}
-
-.back-link {
-    display: inline-block;
-    margin: 20px 0;
-    padding: 10px 20px;
-    background: #2a5298;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.back-link:hover {
-    background: #1e3c72;
-}
-</style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Staff Portal – Jayant Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--primary:#1a5e3c;--primary-light:#22883f;--accent:#f59e0b;--danger:#ef4444;--success:#10b981;--bg:#f0f7f4;--white:#fff;--text:#1e293b;--muted:#64748b;--border:#d1fae5;--radius:12px;--shadow:0 2px 16px rgba(26,94,60,.10);--sidebar-w:240px;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;}
+    .sidebar{width:var(--sidebar-w);background:var(--primary);display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;z-index:100;transition:transform .3s;}
+    .sidebar-logo{padding:1.5rem 1.25rem;border-bottom:1px solid rgba(255,255,255,.1);}
+    .sidebar-logo h2{color:#fff;font-size:1.1rem;font-weight:800;}
+    .sidebar-logo span{color:var(--accent);display:block;font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+    .sidebar-nav{flex:1;padding:1rem 0;overflow-y:auto;}
+    .nav-section{padding:.5rem 1rem .25rem;font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);}
+    .nav-item{display:flex;align-items:center;gap:.75rem;padding:.7rem 1.25rem;cursor:pointer;color:rgba(255,255,255,.75);font-size:.88rem;font-weight:600;transition:all .2s;border-left:3px solid transparent;}
+    .nav-item:hover{background:rgba(255,255,255,.08);color:#fff;}
+    .nav-item.active{background:rgba(255,255,255,.12);color:#fff;border-left-color:var(--accent);}
+    .sidebar-footer{padding:1rem 1.25rem;border-top:1px solid rgba(255,255,255,.1);}
+    .staff-info{display:flex;align-items:center;gap:.75rem;}
+    .staff-avatar{width:36px;height:36px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--primary);font-size:.9rem;}
+    .staff-name{color:#fff;font-size:.85rem;font-weight:700;}
+    .staff-role{color:rgba(255,255,255,.5);font-size:.72rem;}
+    .main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;}
+    .topbar{background:var(--white);border-bottom:1px solid var(--border);padding:.9rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:0 1px 8px rgba(0,0,0,.06);}
+    .page-title{font-size:1.1rem;font-weight:800;}
+    .topbar-right{display:flex;align-items:center;gap:1rem;}
+    .topbar-btn{background:none;border:1.5px solid var(--border);padding:.4rem .9rem;border-radius:8px;font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;color:var(--text);transition:all .2s;}
+    .topbar-btn.primary{background:var(--primary);color:#fff;border-color:var(--primary);}
+    .content{padding:1.5rem;flex:1;}
+    .page{display:none;}
+    .page.active{display:block;animation:fadeIn .3s ease;}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:1.5rem;}
+    .stat-card{background:var(--white);border-radius:var(--radius);padding:1.25rem;box-shadow:var(--shadow);display:flex;align-items:center;gap:1rem;border-left:4px solid var(--primary);}
+    .stat-card.amber{border-left-color:var(--accent);}
+    .stat-card.red{border-left-color:var(--danger);}
+    .stat-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;background:#d1fae5;flex-shrink:0;}
+    .stat-card.amber .stat-icon{background:#fef3c7;}
+    .stat-card.red .stat-icon{background:#fee2e2;}
+    .stat-num{font-size:1.6rem;font-weight:800;line-height:1;}
+    .stat-label{font-size:.78rem;color:var(--muted);font-weight:600;margin-top:.2rem;}
+    .card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:1.25rem;}
+    .card-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+    .card-title{font-size:.95rem;font-weight:800;}
+    .card-body{padding:1.25rem;}
+    table{width:100%;border-collapse:collapse;font-size:.85rem;}
+    th{background:#f0fdf4;padding:.7rem 1rem;text-align:left;font-weight:700;font-size:.75rem;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--border);}
+    td{padding:.75rem 1rem;border-bottom:1px solid var(--border);}
+    tr:last-child td{border-bottom:none;}
+    tr:hover td{background:#f0fdf4;}
+    .badge{display:inline-block;padding:.2rem .65rem;border-radius:50px;font-size:.72rem;font-weight:700;}
+    .badge.present{background:#d1fae5;color:#065f46;}
+    .badge.absent{background:#fee2e2;color:#991b1b;}
+    .badge.leave{background:#fef3c7;color:#92400e;}
+    .action-btn{padding:.3rem .75rem;border-radius:6px;border:none;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;transition:all .2s;margin-right:.3rem;}
+    .action-btn.mark{background:#d1fae5;color:#065f46;}
+    .action-btn.view{background:#dbeafe;color:#1e40af;}
+    .timetable-grid{display:grid;grid-template-columns:80px repeat(6,1fr);gap:4px;}
+    .tt-head{background:var(--primary);color:#fff;padding:.5rem;border-radius:6px;font-size:.75rem;font-weight:700;text-align:center;}
+    .tt-time{background:#f0fdf4;padding:.5rem;border-radius:6px;font-size:.72rem;font-weight:700;color:var(--primary);text-align:center;display:flex;align-items:center;justify-content:center;}
+    .tt-cell{background:var(--white);border:1px solid var(--border);padding:.5rem;border-radius:6px;font-size:.72rem;text-align:center;min-height:50px;display:flex;align-items:center;justify-content:center;}
+    .tt-cell.filled{background:#d1fae5;color:#065f46;font-weight:700;}
+    .tt-cell.free{background:#f8fafc;color:var(--muted);}
+    .assignment-item{padding:.85rem;border-radius:8px;background:#f0fdf4;border-left:4px solid var(--primary);margin-bottom:.75rem;}
+    .assignment-title{font-weight:700;font-size:.9rem;}
+    .assignment-meta{font-size:.75rem;color:var(--muted);margin-top:.25rem;}
+    .form-group{margin-bottom:1rem;}
+    label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);margin-bottom:.35rem;}
+    input,select,textarea{width:100%;padding:.65rem .9rem;border:1.5px solid var(--border);border-radius:8px;font-family:'Nunito',sans-serif;font-size:.88rem;color:var(--text);background:var(--white);outline:none;transition:border-color .2s;}
+    input:focus,select:focus,textarea:focus{border-color:var(--primary);}
+    .btn{padding:.6rem 1.4rem;border-radius:8px;border:none;font-family:'Nunito',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s;}
+    .btn-primary{background:var(--primary);color:#fff;}
+    .btn-primary:hover{background:var(--primary-light);}
+    #loginOverlay{position:fixed;inset:0;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;z-index:999;}
+    .login-box{background:#fff;border-radius:20px;padding:2.5rem;width:90%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:fadeIn .4s ease;}
+    .login-logo{text-align:center;margin-bottom:1.5rem;}
+    .login-logo h2{color:var(--primary);font-size:1.4rem;font-weight:800;}
+    .login-logo p{color:var(--muted);font-size:.85rem;}
+    .login-btn{width:100%;padding:.85rem;background:var(--primary);color:#fff;border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;cursor:pointer;}
+    #toast{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--primary);color:#fff;padding:.75rem 1.25rem;border-radius:10px;font-size:.88rem;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9999;}
+    #toast.show{opacity:1;}
+    .hamburger{display:none;background:none;border:none;cursor:pointer;padding:.25rem;}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--text);margin:4px 0;border-radius:2px;}
+    @media(max-width:768px){.sidebar{transform:translateX(-100%)}.sidebar.open{transform:none}.main{margin-left:0}.hamburger{display:block}}
+  </style>
 </head>
 <body>
 
-<div class="header">
-    <h1><i class="fas fa-id-card"></i> Staff Portal</h1>
-    <p>Jayant Academy - Teachers & Staff</p>
+<div id="loginOverlay">
+  <div class="login-box">
+    <div class="login-logo"><h2>🏫 Jayant Academy</h2><p>Staff Portal — Secure Login</p></div>
+    <div class="form-group"><label>Staff ID</label><input id="loginUser" placeholder="ST001" value="ST001"/></div>
+    <div class="form-group"><label>Password</label><input id="loginPass" type="password" placeholder="••••••" value="staff123"/></div>
+    <p style="font-size:.75rem;color:var(--muted);margin-bottom:1rem;">Demo: ID <b>ST001</b> / password <b>staff123</b></p>
+    <button class="login-btn" onclick="doLogin()">Login to Staff Portal</button>
+  </div>
 </div>
 
-<div class="container">
-    <div id="loginSection" class="login-box">
-        <h2>Staff Login</h2>
-        <input type="email" id="email" placeholder="Email ID" value="deepak@jayant.academy">
-        <input type="password" id="password" placeholder="Password" value="teacher123">
-        <button onclick="staffLogin()">Login</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo"><h2>🏫 Jayant Academy</h2><span>Staff Portal</span></div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">Main</div>
+    <div class="nav-item active" onclick="showPage('dashboard',this)"><span>📊</span> Dashboard</div>
+    <div class="nav-section">Teaching</div>
+    <div class="nav-item" onclick="showPage('timetable',this)"><span>🗓️</span> My Timetable</div>
+    <div class="nav-item" onclick="showPage('attendance',this)"><span>✅</span> Mark Attendance</div>
+    <div class="nav-item" onclick="showPage('assignments',this)"><span>📝</span> Assignments</div>
+    <div class="nav-section">Info</div>
+    <div class="nav-item" onclick="showPage('notices',this)"><span>📢</span> Notices</div>
+    <div class="nav-item" onclick="showPage('profile',this)"><span>👤</span> My Profile</div>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="staff-info">
+      <div class="staff-avatar">D</div>
+      <div><div class="staff-name">Deepak Kumar</div><div class="staff-role">Science Teacher</div></div>
+    </div>
+  </div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <button class="hamburger" onclick="document.getElementById('sidebar').classList.toggle('open')"><span></span><span></span><span></span></button>
+      <span class="page-title" id="pageTitle">Dashboard</span>
+    </div>
+    <div class="topbar-right">
+      <span style="font-size:.82rem;color:var(--muted);">📅 Sun, 1 Jun 2026</span>
+      <button class="topbar-btn primary" onclick="doLogout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- DASHBOARD -->
+    <div class="page active" id="page-dashboard">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-icon">🎓</div><div><div class="stat-num">38</div><div class="stat-label">My Students</div></div></div>
+        <div class="stat-card amber"><div class="stat-icon">📚</div><div><div class="stat-num">6</div><div class="stat-label">Classes Today</div></div></div>
+        <div class="stat-card"><div class="stat-icon">📝</div><div><div class="stat-num">4</div><div class="stat-label">Pending Assignments</div></div></div>
+        <div class="stat-card red"><div class="stat-icon">📢</div><div><div class="stat-num">2</div><div class="stat-label">New Notices</div></div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
+        <div class="card">
+          <div class="card-header"><span class="card-title">🗓️ Today's Schedule</span></div>
+          <div class="card-body">
+            <table>
+              <thead><tr><th>Period</th><th>Class</th><th>Subject</th><th>Time</th></tr></thead>
+              <tbody>
+                <tr><td>1st</td><td>VIII-A</td><td>Physics</td><td>8:30-9:20</td></tr>
+                <tr><td>2nd</td><td>VII-B</td><td>Chemistry</td><td>9:20-10:10</td></tr>
+                <tr><td>3rd</td><td>IX-A</td><td>Biology</td><td>10:30-11:20</td></tr>
+                <tr><td>4th</td><td>VI-A</td><td>Science</td><td>11:20-12:10</td></tr>
+                <tr><td>5th</td><td>VIII-B</td><td>Physics</td><td>12:50-1:40</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="card-title">📢 Recent Notices</span></div>
+          <div class="card-body">
+            <div class="assignment-item"><div class="assignment-title">🚨 PTM — June 5, 2026</div><div class="assignment-meta">From Admin · 2 days ago</div></div>
+            <div class="assignment-item"><div class="assignment-title">📚 Summer Vacation: Jun 15–Jul 10</div><div class="assignment-meta">From Admin · 5 days ago</div></div>
+            <div class="assignment-item"><div class="assignment-title">📋 Syllabus submission by June 3</div><div class="assignment-meta">From Admin · 1 week ago</div></div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div id="dashboardSection" class="hidden">
-        <button class="back-link" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
-        
-        <h2 style="color: #1e3c72; font-size: 2em; margin: 30px 0;"><i class="fas fa-user-circle"></i> Welcome, Deepak Kumar</h2>
-        
-        <div class="dashboard">
-            <div class="dash-card">
-                <i class="fas fa-users"></i>
-                <h3>My Classes</h3>
-                <p style="font-size: 2em; color: #2a5298; font-weight: bold;">3</p>
-            </div>
-            <div class="dash-card">
-                <i class="fas fa-graduation-cap"></i>
-                <h3>Total Students</h3>
-                <p style="font-size: 2em; color: #2a5298; font-weight: bold;">85</p>
-            </div>
-            <div class="dash-card">
-                <i class="fas fa-calendar"></i>
-                <h3>Assignments</h3>
-                <p style="font-size: 2em; color: #2a5298; font-weight: bold;">12</p>
-            </div>
-            <div class="dash-card">
-                <i class="fas fa-envelope"></i>
-                <h3>Messages</h3>
-                <p style="font-size: 2em; color: #2a5298; font-weight: bold;">5</p>
-            </div>
+    <!-- TIMETABLE -->
+    <div class="page" id="page-timetable">
+      <div class="card">
+        <div class="card-header"><span class="card-title">🗓️ My Weekly Timetable</span></div>
+        <div class="card-body" style="overflow-x:auto;">
+          <div class="timetable-grid" style="min-width:600px;">
+            <div class="tt-head">Time</div>
+            <div class="tt-head">Mon</div><div class="tt-head">Tue</div><div class="tt-head">Wed</div>
+            <div class="tt-head">Thu</div><div class="tt-head">Fri</div><div class="tt-head">Sat</div>
+            <div class="tt-time">8:30-9:20</div>
+            <div class="tt-cell filled">VIII-A Physics</div><div class="tt-cell free">Free</div><div class="tt-cell filled">IX-A Biology</div>
+            <div class="tt-cell filled">VIII-A Physics</div><div class="tt-cell free">Free</div><div class="tt-cell filled">VI-A Science</div>
+            <div class="tt-time">9:20-10:10</div>
+            <div class="tt-cell filled">VII-B Chem</div><div class="tt-cell filled">VIII-B Physics</div><div class="tt-cell free">Free</div>
+            <div class="tt-cell filled">VII-B Chem</div><div class="tt-cell filled">IX-A Biology</div><div class="tt-cell free">Free</div>
+            <div class="tt-time">10:30-11:20</div>
+            <div class="tt-cell filled">IX-A Biology</div><div class="tt-cell filled">VI-A Science</div><div class="tt-cell filled">VIII-A Physics</div>
+            <div class="tt-cell free">Free</div><div class="tt-cell filled">VIII-B Physics</div><div class="tt-cell filled">VII-B Chem</div>
+            <div class="tt-time">11:20-12:10</div>
+            <div class="tt-cell filled">VI-A Science</div><div class="tt-cell free">Free</div><div class="tt-cell filled">VII-B Chem</div>
+            <div class="tt-cell filled">IX-A Biology</div><div class="tt-cell free">Free</div><div class="tt-cell filled">VIII-A Physics</div>
+            <div class="tt-time">12:50-1:40</div>
+            <div class="tt-cell filled">VIII-B Physics</div><div class="tt-cell filled">IX-A Biology</div><div class="tt-cell free">Free</div>
+            <div class="tt-cell filled">VI-A Science</div><div class="tt-cell filled">VII-B Chem</div><div class="tt-cell free">Free</div>
+          </div>
+          <div style="margin-top:1rem;display:flex;gap:1rem;font-size:.75rem;font-weight:700;">
+            <span style="color:#065f46;">🟢 Class Period</span>
+            <span style="color:var(--muted);">⚪ Free Period</span>
+          </div>
         </div>
-
-        <div class="section">
-            <h2>My Classes</h2>
-            <table>
-                <tr>
-                    <th>Class</th>
-                    <th>Section</th>
-                    <th>Students</th>
-                    <th>Subject</th>
-                    <th>Actions</th>
-                </tr>
-                <tr>
-                    <td>VI</td>
-                    <td>A</td>
-                    <td>32</td>
-                    <td>Science</td>
-                    <td><button class="btn">View</button></td>
-                </tr>
-                <tr>
-                    <td>VI</td>
-                    <td>B</td>
-                    <td>30</td>
-                    <td>Science</td>
-                    <td><button class="btn">View</button></td>
-                </tr>
-                <tr>
-                    <td>VII</td>
-                    <td>A</td>
-                    <td>28</td>
-                    <td>Science</td>
-                    <td><button class="btn">View</button></td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="section">
-            <h2>Mark Attendance</h2>
-            <p><strong>Select Class:</strong></p>
-            <select style="padding: 10px; border-radius: 5px; border: 2px solid #e0e0e0; width: 200px;">
-                <option>Class VI-A</option>
-                <option>Class VI-B</option>
-                <option>Class VII-A</option>
-            </select>
-            <button class="btn" style="margin-left: 10px;">Mark Attendance</button>
-        </div>
-
-        <div class="section">
-            <h2>Assignments</h2>
-            <table>
-                <tr>
-                    <th>Class</th>
-                    <th>Assignment</th>
-                    <th>Due Date</th>
-                    <th>Status</th>
-                </tr>
-                <tr>
-                    <td>VI-A</td>
-                    <td>Chapter 1-3 Revision</td>
-                    <td>25-Mar-2026</td>
-                    <td><span style="color: green;">✓ Uploaded</span></td>
-                </tr>
-                <tr>
-                    <td>VI-B</td>
-                    <td>Science Project</td>
-                    <td>30-Mar-2026</td>
-                    <td><span style="color: orange;">⏳ Pending</span></td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="section">
-            <h2>Leave Application</h2>
-            <p>Apply for leave here:</p>
-            <input type="date" style="padding: 10px; margin: 10px 0; width: 100%; border: 2px solid #e0e0e0; border-radius: 5px;" placeholder="Leave Date">
-            <textarea style="padding: 10px; margin: 10px 0; width: 100%; border: 2px solid #e0e0e0; border-radius: 5px; font-family: 'Poppins';" rows="4" placeholder="Reason for Leave"></textarea>
-            <button class="btn">Submit Leave Request</button>
-        </div>
+      </div>
     </div>
+
+    <!-- ATTENDANCE -->
+    <div class="page" id="page-attendance">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">✅ Mark Attendance</span>
+          <div style="display:flex;gap:.75rem;">
+            <select style="font-size:.82rem;" onchange="showToast('Class changed')"><option>VIII-A</option><option>VII-B</option><option>IX-A</option><option>VI-A</option></select>
+            <input type="date" style="font-size:.82rem;width:140px;" value="2026-06-01"/>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-wrap" style="overflow-x:auto;">
+            <table>
+              <thead><tr><th>Roll</th><th>Student Name</th><th>Status</th><th>Mark</th></tr></thead>
+              <tbody id="attendanceBody">
+                <tr><td>01</td><td>Aman Kumar</td><td><span class="badge present" id="att1">Present</span></td><td><button class="action-btn mark" onclick="toggleAtt('att1')">Toggle</button></td></tr>
+                <tr><td>02</td><td>Priya Singh</td><td><span class="badge present" id="att2">Present</span></td><td><button class="action-btn mark" onclick="toggleAtt('att2')">Toggle</button></td></tr>
+                <tr><td>03</td><td>Rohit Patel</td><td><span class="badge absent" id="att3">Absent</span></td><td><button class="action-btn mark" onclick="toggleAtt('att3')">Toggle</button></td></tr>
+                <tr><td>04</td><td>Sneha Gupta</td><td><span class="badge present" id="att4">Present</span></td><td><button class="action-btn mark" onclick="toggleAtt('att4')">Toggle</button></td></tr>
+                <tr><td>05</td><td>Arjun Mishra</td><td><span class="badge leave" id="att5">Leave</span></td><td><button class="action-btn mark" onclick="toggleAtt('att5')">Toggle</button></td></tr>
+                <tr><td>06</td><td>Kavya Sharma</td><td><span class="badge present" id="att6">Present</span></td><td><button class="action-btn mark" onclick="toggleAtt('att6')">Toggle</button></td></tr>
+                <tr><td>07</td><td>Raj Verma</td><td><span class="badge present" id="att7">Present</span></td><td><button class="action-btn mark" onclick="toggleAtt('att7')">Toggle</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="margin-top:1rem;">
+            <button class="btn btn-primary" onclick="showToast('✅ Attendance saved successfully!')">Save Attendance</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ASSIGNMENTS -->
+    <div class="page" id="page-assignments">
+      <div class="card">
+        <div class="card-header"><span class="card-title">📝 Assignments</span></div>
+        <div class="card-body">
+          <div id="assignmentList">
+            <div class="assignment-item"><div class="assignment-title">📌 Chapter 5 – Light & Optics (VIII-A)</div><div class="assignment-meta">Due: June 5, 2026 · Submitted: 28/38</div></div>
+            <div class="assignment-item"><div class="assignment-title">📌 Periodic Table Quiz (VII-B)</div><div class="assignment-meta">Due: June 7, 2026 · Submitted: 30/35</div></div>
+            <div class="assignment-item"><div class="assignment-title">📌 Cell Structure Diagram (IX-A)</div><div class="assignment-meta">Due: June 10, 2026 · Submitted: 12/40</div></div>
+          </div>
+          <div style="margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--border);">
+            <p style="font-size:.85rem;font-weight:800;margin-bottom:.75rem;">+ Post New Assignment</p>
+            <div class="form-group"><label>Title</label><input id="assTitle" placeholder="Assignment title..."/></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+              <div class="form-group"><label>Class</label><select><option>VIII-A</option><option>VII-B</option><option>IX-A</option><option>VI-A</option></select></div>
+              <div class="form-group"><label>Due Date</label><input type="date" value="2026-06-10"/></div>
+            </div>
+            <div class="form-group"><label>Description</label><textarea rows="2" placeholder="Instructions..."></textarea></div>
+            <button class="btn btn-primary" onclick="addAssignment()">Post Assignment</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTICES -->
+    <div class="page" id="page-notices">
+      <div class="card">
+        <div class="card-header"><span class="card-title">📢 Notice Board</span></div>
+        <div class="card-body">
+          <div class="assignment-item" style="border-left-color:var(--danger);background:#fff5f5;"><div class="assignment-title">🚨 PTM Scheduled — June 5, 2026</div><div class="assignment-meta">From Admin · 2 days ago</div></div>
+          <div class="assignment-item"><div class="assignment-title">📚 Summer Vacation: June 15 – July 10</div><div class="assignment-meta">From Admin · 5 days ago</div></div>
+          <div class="assignment-item"><div class="assignment-title">📋 Submit syllabus completion report by June 3</div><div class="assignment-meta">From Admin · 1 week ago</div></div>
+          <div class="assignment-item"><div class="assignment-title">🏅 Best Teacher Award nominations open</div><div class="assignment-meta">From Admin · 2 weeks ago</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="page" id="page-profile">
+      <div class="card">
+        <div class="card-header"><span class="card-title">👤 My Profile</span></div>
+        <div class="card-body">
+          <div style="display:flex;align-items:center;gap:1.5rem;margin-bottom:1.5rem;">
+            <div style="width:80px;height:80px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff;font-weight:800;">D</div>
+            <div><div style="font-size:1.3rem;font-weight:800;">Deepak Kumar</div><div style="color:var(--muted);font-size:.88rem;">Science Teacher · ST001</div><div style="color:var(--success);font-size:.82rem;font-weight:700;margin-top:.25rem;">● Active</div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div class="form-group"><label>Full Name</label><input value="Deepak Kumar"/></div>
+            <div class="form-group"><label>Staff ID</label><input value="ST001" readonly style="background:#f8fafc;"/></div>
+            <div class="form-group"><label>Department</label><input value="Science"/></div>
+            <div class="form-group"><label>Designation</label><input value="Teacher"/></div>
+            <div class="form-group"><label>Phone</label><input value="9876541001"/></div>
+            <div class="form-group"><label>Email</label><input value="deepak@jayantacademy.in"/></div>
+            <div class="form-group"><label>Qualification</label><input value="M.Sc. Physics"/></div>
+            <div class="form-group"><label>Experience</label><input value="8 Years"/></div>
+          </div>
+          <button class="btn btn-primary" style="margin-top:1rem;" onclick="showToast('✅ Profile updated!')">Save Changes</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<footer>
-    <p>&copy; 2026 Jayant Academy Staff Portal | All Rights Reserved</p>
-    <a href="index.html" style="color: white; text-decoration: none; margin-left: 20px;"><i class="fas fa-home"></i> Back to Website</a>
-</footer>
+<div id="toast"></div>
 
 <script>
-function staffLogin() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    
-    if (email.includes('@') && password.length > 5) {
-        document.getElementById('loginSection').classList.add('hidden');
-        document.getElementById('dashboardSection').classList.remove('hidden');
-    } else {
-        alert('Invalid credentials!');
-    }
-}
-
-function logout() {
-    document.getElementById('loginSection').classList.remove('hidden');
-    document.getElementById('dashboardSection').classList.add('hidden');
-}
+  function doLogin(){document.getElementById('loginOverlay').style.display='none';}
+  function doLogout(){document.getElementById('loginOverlay').style.display='flex';}
+  function showPage(id,el){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    document.getElementById('page-'+id).classList.add('active');
+    if(el)el.classList.add('active');
+    const t={dashboard:'Dashboard',timetable:'My Timetable',attendance:'Mark Attendance',assignments:'Assignments',notices:'Notices',profile:'My Profile'};
+    document.getElementById('pageTitle').textContent=t[id]||id;
+  }
+  function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+  function toggleAtt(id){
+    const el=document.getElementById(id);
+    const states=['Present','Absent','Leave'];
+    const cls=['present','absent','leave'];
+    const i=states.indexOf(el.textContent);
+    const next=(i+1)%3;
+    el.textContent=states[next];
+    el.className='badge '+cls[next];
+  }
+  function addAssignment(){
+    const title=document.getElementById('assTitle').value.trim();
+    if(!title){showToast('Enter a title!');return;}
+    const div=document.createElement('div');
+    div.className='assignment-item';
+    div.innerHTML=`<div class="assignment-title">📌 ${title}</div><div class="assignment-meta">Due: Jun 10, 2026 · Submitted: 0</div>`;
+    document.getElementById('assignmentList').prepend(div);
+    document.getElementById('assTitle').value='';
+    showToast('✅ Assignment posted!');
+  }
 </script>
-
 </body>
 </html>
