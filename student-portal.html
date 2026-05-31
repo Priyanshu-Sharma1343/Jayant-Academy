@@ -1,373 +1,350 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Student Portal - Jayant Academy</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #f5f7fa;
-    color: #333;
-}
-
-.header {
-    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-.container {
-    max-width: 1000px;
-    margin: 30px auto;
-    padding: 0 20px;
-}
-
-.login-box {
-    background: white;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    max-width: 400px;
-    margin: 50px auto;
-    text-align: center;
-}
-
-.login-box h2 {
-    color: #4CAF50;
-    margin-bottom: 30px;
-}
-
-.login-box input {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
-}
-
-.login-box button {
-    width: 100%;
-    padding: 12px;
-    background: linear-gradient(135deg, #4CAF50, #45a049);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: all 0.3s ease;
-}
-
-.login-box button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
-}
-
-.dashboard {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-.dash-card {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    text-align: center;
-}
-
-.dash-card i {
-    font-size: 3em;
-    color: #4CAF50;
-    margin-bottom: 15px;
-}
-
-.dash-card h3 {
-    color: #1e3c72;
-    margin-bottom: 10px;
-}
-
-.section {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    margin: 20px 0;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-}
-
-.section h2 {
-    color: #1e3c72;
-    margin-bottom: 20px;
-    border-bottom: 3px solid #4CAF50;
-    padding-bottom: 10px;
-    display: inline-block;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table th {
-    background: #4CAF50;
-    color: white;
-    padding: 12px;
-    text-align: left;
-}
-
-table td {
-    padding: 12px;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.btn {
-    padding: 8px 15px;
-    background: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.btn:hover {
-    background: #45a049;
-}
-
-.hidden {
-    display: none;
-}
-
-footer {
-    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: 50px;
-}
-
-.back-link {
-    display: inline-block;
-    margin: 20px 0;
-    padding: 10px 20px;
-    background: #4CAF50;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.back-link:hover {
-    background: #45a049;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 20px;
-    background: #e0e0e0;
-    border-radius: 10px;
-    overflow: hidden;
-    margin: 10px 0;
-}
-
-.progress-fill {
-    height: 100%;
-    background: #4CAF50;
-    text-align: center;
-    color: white;
-    font-size: 12px;
-}
-</style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Portal – Jayant Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--primary:#7c3aed;--primary-light:#9f63f5;--accent:#f59e0b;--danger:#ef4444;--success:#10b981;--bg:#f5f3ff;--white:#fff;--text:#1e293b;--muted:#64748b;--border:#ede9fe;--radius:12px;--shadow:0 2px 16px rgba(124,58,237,.10);--sidebar-w:240px;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;}
+    .sidebar{width:var(--sidebar-w);background:var(--primary);display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;z-index:100;transition:transform .3s;}
+    .sidebar-logo{padding:1.5rem 1.25rem;border-bottom:1px solid rgba(255,255,255,.1);}
+    .sidebar-logo h2{color:#fff;font-size:1.1rem;font-weight:800;}
+    .sidebar-logo span{color:var(--accent);display:block;font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+    .nav-section{padding:.5rem 1rem .25rem;font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);}
+    .nav-item{display:flex;align-items:center;gap:.75rem;padding:.7rem 1.25rem;cursor:pointer;color:rgba(255,255,255,.75);font-size:.88rem;font-weight:600;transition:all .2s;border-left:3px solid transparent;}
+    .nav-item:hover{background:rgba(255,255,255,.08);color:#fff;}
+    .nav-item.active{background:rgba(255,255,255,.12);color:#fff;border-left-color:var(--accent);}
+    .sidebar-footer{padding:1rem 1.25rem;border-top:1px solid rgba(255,255,255,.1);}
+    .stu-info{display:flex;align-items:center;gap:.75rem;}
+    .stu-avatar{width:36px;height:36px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--primary);font-size:.9rem;}
+    .main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;}
+    .topbar{background:var(--white);border-bottom:1px solid var(--border);padding:.9rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:0 1px 8px rgba(0,0,0,.06);}
+    .topbar-btn{background:none;border:1.5px solid var(--border);padding:.4rem .9rem;border-radius:8px;font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;color:var(--text);}
+    .topbar-btn.primary{background:var(--primary);color:#fff;border-color:var(--primary);}
+    .content{padding:1.5rem;flex:1;}
+    .page{display:none;}
+    .page.active{display:block;animation:fadeIn .3s ease;}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:1.5rem;}
+    .stat-card{background:var(--white);border-radius:var(--radius);padding:1.25rem;box-shadow:var(--shadow);display:flex;align-items:center;gap:1rem;border-left:4px solid var(--primary);}
+    .stat-card.green{border-left-color:var(--success);}
+    .stat-card.amber{border-left-color:var(--accent);}
+    .stat-card.red{border-left-color:var(--danger);}
+    .stat-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;background:#ede9fe;flex-shrink:0;}
+    .stat-num{font-size:1.5rem;font-weight:800;line-height:1;}
+    .stat-label{font-size:.75rem;color:var(--muted);font-weight:600;margin-top:.2rem;}
+    .card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:1.25rem;}
+    .card-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+    .card-title{font-size:.95rem;font-weight:800;}
+    .card-body{padding:1.25rem;}
+    table{width:100%;border-collapse:collapse;font-size:.85rem;}
+    th{background:#f5f3ff;padding:.7rem 1rem;text-align:left;font-weight:700;font-size:.75rem;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--border);}
+    td{padding:.75rem 1rem;border-bottom:1px solid var(--border);}
+    tr:last-child td{border-bottom:none;}
+    .badge{display:inline-block;padding:.2rem .65rem;border-radius:50px;font-size:.72rem;font-weight:700;}
+    .badge.pass{background:#d1fae5;color:#065f46;}
+    .badge.fail{background:#fee2e2;color:#991b1b;}
+    .badge.pending{background:#fef3c7;color:#92400e;}
+    .badge.present{background:#d1fae5;color:#065f46;}
+    .badge.absent{background:#fee2e2;color:#991b1b;}
+    .subject-card{background:var(--bg);border-radius:10px;padding:1rem;border-left:4px solid var(--primary);margin-bottom:.75rem;}
+    .subject-name{font-weight:700;font-size:.92rem;margin-bottom:.5rem;}
+    .mark-bar{height:8px;border-radius:50px;background:var(--border);margin:.35rem 0;}
+    .mark-fill{height:100%;border-radius:50px;}
+    .notice-item{padding:.85rem;border-radius:8px;background:var(--bg);border-left:4px solid var(--primary);margin-bottom:.75rem;}
+    .notice-item.urgent{border-left-color:var(--danger);background:#fff5f5;}
+    .timetable-grid{display:grid;grid-template-columns:70px repeat(6,1fr);gap:3px;font-size:.75rem;}
+    .tt-head{background:var(--primary);color:#fff;padding:.5rem .3rem;border-radius:6px;font-weight:700;text-align:center;}
+    .tt-time{background:#ede9fe;padding:.45rem .3rem;border-radius:6px;font-weight:700;color:var(--primary);text-align:center;display:flex;align-items:center;justify-content:center;}
+    .tt-cell{background:var(--white);border:1px solid var(--border);padding:.45rem .3rem;border-radius:6px;text-align:center;min-height:48px;display:flex;align-items:center;justify-content:center;font-weight:600;}
+    .tt-cell.s{background:#ede9fe;color:var(--primary);}
+    #loginOverlay{position:fixed;inset:0;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;z-index:999;}
+    .login-box{background:#fff;border-radius:20px;padding:2.5rem;width:90%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:fadeIn .4s ease;}
+    .login-logo{text-align:center;margin-bottom:1.5rem;}
+    .login-logo h2{color:var(--primary);font-size:1.4rem;font-weight:800;}
+    .login-logo p{color:var(--muted);font-size:.85rem;}
+    .form-group{margin-bottom:1rem;}
+    label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);margin-bottom:.35rem;}
+    input,select{width:100%;padding:.65rem .9rem;border:1.5px solid var(--border);border-radius:8px;font-family:'Nunito',sans-serif;font-size:.88rem;color:var(--text);background:#fff;outline:none;transition:border-color .2s;}
+    input:focus,select:focus{border-color:var(--primary);}
+    .login-btn{width:100%;padding:.85rem;background:var(--primary);color:#fff;border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;cursor:pointer;}
+    #toast{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--primary);color:#fff;padding:.75rem 1.25rem;border-radius:10px;font-size:.88rem;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9999;}
+    #toast.show{opacity:1;}
+    .hamburger{display:none;background:none;border:none;cursor:pointer;padding:.25rem;}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--text);margin:4px 0;border-radius:2px;}
+    @media(max-width:768px){.sidebar{transform:translateX(-100%)}.sidebar.open{transform:none}.main{margin-left:0}.hamburger{display:block}}
+  </style>
 </head>
 <body>
 
-<div class="header">
-    <h1><i class="fas fa-graduation-cap"></i> Student Portal</h1>
-    <p>Jayant Academy - Knowledge Central</p>
+<div id="loginOverlay">
+  <div class="login-box">
+    <div class="login-logo"><h2>🏫 Jayant Academy</h2><p>Student Portal — Login</p></div>
+    <div class="form-group"><label>Roll Number</label><input id="loginUser" placeholder="001" value="001"/></div>
+    <div class="form-group"><label>Password</label><input id="loginPass" type="password" placeholder="••••••" value="student123"/></div>
+    <p style="font-size:.75rem;color:var(--muted);margin-bottom:1rem;">Demo: Roll <b>001</b> / password <b>student123</b></p>
+    <button class="login-btn" onclick="doLogin()">Login to Student Portal</button>
+  </div>
 </div>
 
-<div class="container">
-    <div id="loginSection" class="login-box">
-        <h2>Student Login</h2>
-        <input type="text" id="rollno" placeholder="Roll Number" value="001">
-        <input type="password" id="password" placeholder="Password" value="student123">
-        <button onclick="studentLogin()">Login</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo"><h2>🏫 Jayant Academy</h2><span>Student Portal</span></div>
+  <nav style="flex:1;padding:1rem 0;overflow-y:auto;">
+    <div class="nav-section">Main</div>
+    <div class="nav-item active" onclick="showPage('dashboard',this)"><span>🏠</span> Dashboard</div>
+    <div class="nav-section">Academics</div>
+    <div class="nav-item" onclick="showPage('results',this)"><span>📊</span> My Results</div>
+    <div class="nav-item" onclick="showPage('attendance',this)"><span>✅</span> Attendance</div>
+    <div class="nav-item" onclick="showPage('timetable',this)"><span>🗓️</span> Timetable</div>
+    <div class="nav-item" onclick="showPage('assignments',this)"><span>📝</span> Assignments</div>
+    <div class="nav-section">Info</div>
+    <div class="nav-item" onclick="showPage('notices',this)"><span>📢</span> Notices</div>
+    <div class="nav-item" onclick="showPage('fees',this)"><span>💰</span> Fee Status</div>
+    <div class="nav-item" onclick="showPage('profile',this)"><span>👤</span> My Profile</div>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="stu-info">
+      <div class="stu-avatar">A</div>
+      <div><div style="color:#fff;font-size:.85rem;font-weight:700;">Aman Kumar</div><div style="color:rgba(255,255,255,.5);font-size:.72rem;">Class VI-A · Roll 001</div></div>
+    </div>
+  </div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <button class="hamburger" onclick="document.getElementById('sidebar').classList.toggle('open')"><span></span><span></span><span></span></button>
+      <span style="font-size:1.1rem;font-weight:800;" id="pageTitle">Dashboard</span>
+    </div>
+    <div style="display:flex;gap:1rem;align-items:center;">
+      <span style="font-size:.82rem;color:var(--muted);">📅 Jun 1, 2026</span>
+      <button class="topbar-btn primary" onclick="doLogout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- DASHBOARD -->
+    <div class="page active" id="page-dashboard">
+      <div style="background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:16px;padding:1.5rem;margin-bottom:1.5rem;color:#fff;">
+        <div style="font-size:1.2rem;font-weight:800;margin-bottom:.25rem;">Welcome back, Aman! 👋</div>
+        <div style="font-size:.88rem;opacity:.85;">Class VI-A · Roll No. 001 · Jayant Academy</div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-icon">📊</div><div><div class="stat-num">82%</div><div class="stat-label">Overall Score</div></div></div>
+        <div class="stat-card green"><div class="stat-icon">✅</div><div><div class="stat-num">91%</div><div class="stat-label">Attendance</div></div></div>
+        <div class="stat-card amber"><div class="stat-icon">📝</div><div><div class="stat-num">3</div><div class="stat-label">Pending Tasks</div></div></div>
+        <div class="stat-card red"><div class="stat-icon">📢</div><div><div class="stat-num">2</div><div class="stat-label">New Notices</div></div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
+        <div class="card">
+          <div class="card-header"><span class="card-title">📝 Pending Assignments</span></div>
+          <div class="card-body">
+            <div class="notice-item"><div style="font-weight:700;font-size:.88rem;">Chapter 5 – Light & Optics</div><div style="font-size:.75rem;color:var(--muted);">Science · Due: June 5</div></div>
+            <div class="notice-item"><div style="font-weight:700;font-size:.88rem;">Map Work – Rivers of India</div><div style="font-size:.75rem;color:var(--muted);">Social Studies · Due: June 7</div></div>
+            <div class="notice-item"><div style="font-weight:700;font-size:.88rem;">Grammar Exercise – Chapter 8</div><div style="font-size:.75rem;color:var(--muted);">English · Due: June 9</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="card-title">📢 Recent Notices</span></div>
+          <div class="card-body">
+            <div class="notice-item urgent"><div style="font-weight:700;font-size:.88rem;">🚨 PTM — June 5, 2026</div><div style="font-size:.75rem;color:var(--muted);">2 days ago</div></div>
+            <div class="notice-item"><div style="font-weight:700;font-size:.88rem;">📚 Summer Vacation: Jun 15–Jul 10</div><div style="font-size:.75rem;color:var(--muted);">5 days ago</div></div>
+            <div class="notice-item"><div style="font-weight:700;font-size:.88rem;">🏆 Sports Day Registration Open</div><div style="font-size:.75rem;color:var(--muted);">1 week ago</div></div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div id="dashboardSection" class="hidden">
-        <button class="back-link" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
-        
-        <h2 style="color: #1e3c72; font-size: 2em; margin: 30px 0;"><i class="fas fa-user-circle"></i> Welcome, Aman Kumar</h2>
-        
-        <div class="dashboard">
-            <div class="dash-card">
-                <i class="fas fa-chart-line"></i>
-                <h3>Current GPA</h3>
-                <p style="font-size: 2em; color: #4CAF50; font-weight: bold;">8.5</p>
-            </div>
-            <div class="dash-card">
-                <i class="fas fa-book"></i>
-                <h3>Assignments</h3>
-                <p style="font-size: 2em; color: #4CAF50; font-weight: bold;">5</p>
-            </div>
-            <div class="dash-card">
-                <i class="fas fa-calendar"></i>
-                <h3>Events</h3>
-                <p style="font-size: 2em; color: #4CAF50; font-weight: bold;">8</p>
-            </div>
-            <div class="dash-card">
-                <i class="fas fa-clock"></i>
-                <h3>Attendance</h3>
-                <p style="font-size: 2em; color: #4CAF50; font-weight: bold;">94%</p>
-            </div>
+    <!-- RESULTS -->
+    <div class="page" id="page-results">
+      <div class="card">
+        <div class="card-header"><span class="card-title">📊 My Results — Class VI-A</span><select style="font-size:.82rem;width:auto;"><option>Term 1 (2025-26)</option><option>Term 2 (2025-26)</option><option>Annual (2024-25)</option></select></div>
+        <div class="card-body">
+          <div class="subject-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span class="subject-name">📐 Mathematics</span><span style="font-weight:800;color:var(--primary);">88/100</span></div>
+            <div class="mark-bar"><div class="mark-fill" style="width:88%;background:var(--primary)"></div></div>
+            <div style="font-size:.75rem;color:var(--muted);">Grade: A · Rank: 3rd in class</div>
+          </div>
+          <div class="subject-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span class="subject-name">🔬 Science</span><span style="font-weight:800;color:var(--success);">92/100</span></div>
+            <div class="mark-bar"><div class="mark-fill" style="width:92%;background:var(--success)"></div></div>
+            <div style="font-size:.75rem;color:var(--muted);">Grade: A+ · Rank: 1st in class</div>
+          </div>
+          <div class="subject-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span class="subject-name">📖 English</span><span style="font-weight:800;color:var(--accent);">76/100</span></div>
+            <div class="mark-bar"><div class="mark-fill" style="width:76%;background:var(--accent)"></div></div>
+            <div style="font-size:.75rem;color:var(--muted);">Grade: B · Rank: 8th in class</div>
+          </div>
+          <div class="subject-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span class="subject-name">📜 Hindi</span><span style="font-weight:800;color:var(--primary);">81/100</span></div>
+            <div class="mark-bar"><div class="mark-fill" style="width:81%;background:var(--primary)"></div></div>
+            <div style="font-size:.75rem;color:var(--muted);">Grade: A · Rank: 5th in class</div>
+          </div>
+          <div class="subject-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;"><span class="subject-name">🌍 Social Studies</span><span style="font-weight:800;color:var(--success);">79/100</span></div>
+            <div class="mark-bar"><div class="mark-fill" style="width:79%;background:var(--success)"></div></div>
+            <div style="font-size:.75rem;color:var(--muted);">Grade: B+ · Rank: 6th in class</div>
+          </div>
+          <div style="margin-top:1rem;padding:1rem;background:var(--bg);border-radius:10px;display:flex;justify-content:space-between;font-weight:800;">
+            <span>Total: 416/500</span><span style="color:var(--primary);">83.2% — Grade A</span>
+          </div>
         </div>
-
-        <div class="section">
-            <h2>Academic Performance</h2>
-            <table>
-                <tr>
-                    <th>Subject</th>
-                    <th>Marks</th>
-                    <th>Grade</th>
-                    <th>Teacher Comment</th>
-                </tr>
-                <tr>
-                    <td>Science</td>
-                    <td>85</td>
-                    <td>A</td>
-                    <td>Excellent work!</td>
-                </tr>
-                <tr>
-                    <td>Mathematics</td>
-                    <td>88</td>
-                    <td>A</td>
-                    <td>Good Problem solving</td>
-                </tr>
-                <tr>
-                    <td>English</td>
-                    <td>82</td>
-                    <td>A</td>
-                    <td>Improve writing</td>
-                </tr>
-                <tr>
-                    <td>Social Studies</td>
-                    <td>80</td>
-                    <td>B+</td>
-                    <td>Good overall</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="section">
-            <h2>Assignments</h2>
-            <table>
-                <tr>
-                    <th>Subject</th>
-                    <th>Assignment</th>
-                    <th>Due Date</th>
-                    <th>Status</th>
-                </tr>
-                <tr>
-                    <td>Science</td>
-                    <td>Chapter 1-2 Practice</td>
-                    <td>22-Mar-2026</td>
-                    <td><span style="color: green;">✓ Submitted</span></td>
-                </tr>
-                <tr>
-                    <td>Maths</td>
-                    <td>Algebra Worksheet</td>
-                    <td>24-Mar-2026</td>
-                    <td><span style="color: orange;">⏳ Due Soon</span></td>
-                </tr>
-                <tr>
-                    <td>English</td>
-                    <td>Essay Writing</td>
-                    <td>28-Mar-2026</td>
-                    <td><span style="color: blue;">📝 Pending</span></td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="section">
-            <h2>Study Resources</h2>
-            <p><i class="fas fa-file-pdf" style="color: #ff6b6b;"></i> <a href="#" style="color: #4CAF50; text-decoration: none;">Science Notes - Chapter 1</a></p>
-            <p><i class="fas fa-file-pdf" style="color: #ff6b6b;"></i> <a href="#" style="color: #4CAF50; text-decoration: none;">Maths Formula Sheet</a></p>
-            <p><i class="fas fa-video" style="color: #2196F3;"></i> <a href="#" style="color: #4CAF50; text-decoration: none;">English Grammar Video Tutorial</a></p>
-            <p><i class="fas fa-link"></i> <a href="#" style="color: #4CAF50; text-decoration: none;">History Online Learning Portal</a></p>
-        </div>
-
-        <div class="section">
-            <h2>Attendance Record</h2>
-            <p><strong>Present Days:</strong> 94</p>
-            <p><strong>Absent Days:</strong> 6</p>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 94%;">94%</div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Upcoming Events</h2>
-            <table>
-                <tr>
-                    <th>Event</th>
-                    <th>Date</th>
-                    <th>Details</th>
-                </tr>
-                <tr>
-                    <td>Sports Day</td>
-                    <td>November 15</td>
-                    <td>Inter-class competitions</td>
-                </tr>
-                <tr>
-                    <td>Science Fair</td>
-                    <td>February 20</td>
-                    <td>Project exhibitions</td>
-                </tr>
-                <tr>
-                    <td>Annual Day</td>
-                    <td>January 25</td>
-                    <td>Cultural programs</td>
-                </tr>
-            </table>
-        </div>
+      </div>
     </div>
+
+    <!-- ATTENDANCE -->
+    <div class="page" id="page-attendance">
+      <div class="stats-grid">
+        <div class="stat-card green"><div class="stat-icon">✅</div><div><div class="stat-num">91%</div><div class="stat-label">Attendance %</div></div></div>
+        <div class="stat-card"><div class="stat-icon">📅</div><div><div class="stat-num">112</div><div class="stat-label">Days Present</div></div></div>
+        <div class="stat-card red"><div class="stat-icon">❌</div><div><div class="stat-num">11</div><div class="stat-label">Days Absent</div></div></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title">✅ Attendance Record</span></div>
+        <div class="card-body">
+          <table>
+            <thead><tr><th>Date</th><th>Day</th><th>Status</th><th>Remark</th></tr></thead>
+            <tbody>
+              <tr><td>1 Jun 2026</td><td>Sunday</td><td><span class="badge pending">Holiday</span></td><td>—</td></tr>
+              <tr><td>31 May 2026</td><td>Saturday</td><td><span class="badge present">Present</span></td><td>—</td></tr>
+              <tr><td>30 May 2026</td><td>Friday</td><td><span class="badge present">Present</span></td><td>—</td></tr>
+              <tr><td>29 May 2026</td><td>Thursday</td><td><span class="badge absent">Absent</span></td><td>Sick leave</td></tr>
+              <tr><td>28 May 2026</td><td>Wednesday</td><td><span class="badge present">Present</span></td><td>—</td></tr>
+              <tr><td>27 May 2026</td><td>Tuesday</td><td><span class="badge present">Present</span></td><td>—</td></tr>
+              <tr><td>26 May 2026</td><td>Monday</td><td><span class="badge present">Present</span></td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIMETABLE -->
+    <div class="page" id="page-timetable">
+      <div class="card">
+        <div class="card-header"><span class="card-title">🗓️ Class Timetable — VI-A</span></div>
+        <div class="card-body" style="overflow-x:auto;">
+          <div class="timetable-grid" style="min-width:560px;">
+            <div class="tt-head">Time</div>
+            <div class="tt-head">Mon</div><div class="tt-head">Tue</div><div class="tt-head">Wed</div>
+            <div class="tt-head">Thu</div><div class="tt-head">Fri</div><div class="tt-head">Sat</div>
+            <div class="tt-time">8:30</div>
+            <div class="tt-cell s">Math</div><div class="tt-cell s">English</div><div class="tt-cell s">Science</div>
+            <div class="tt-cell s">Hindi</div><div class="tt-cell s">Math</div><div class="tt-cell s">S.Studies</div>
+            <div class="tt-time">9:20</div>
+            <div class="tt-cell s">English</div><div class="tt-cell s">Math</div><div class="tt-cell s">Hindi</div>
+            <div class="tt-cell s">Math</div><div class="tt-cell s">Science</div><div class="tt-cell s">Computer</div>
+            <div class="tt-time">10:30</div>
+            <div class="tt-cell s">Science</div><div class="tt-cell s">S.Studies</div><div class="tt-cell s">Math</div>
+            <div class="tt-cell s">English</div><div class="tt-cell s">Hindi</div><div class="tt-cell s">Math</div>
+            <div class="tt-time">11:20</div>
+            <div class="tt-cell s">Hindi</div><div class="tt-cell s">Science</div><div class="tt-cell s">English</div>
+            <div class="tt-cell s">Science</div><div class="tt-cell s">English</div><div class="tt-cell s">Hindi</div>
+            <div class="tt-time">12:50</div>
+            <div class="tt-cell s">S.Studies</div><div class="tt-cell s">Computer</div><div class="tt-cell s">S.Studies</div>
+            <div class="tt-cell s">Computer</div><div class="tt-cell s">S.Studies</div><div class="tt-cell" style="background:#f5f3ff;color:var(--muted);">Free</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ASSIGNMENTS -->
+    <div class="page" id="page-assignments">
+      <div class="card">
+        <div class="card-header"><span class="card-title">📝 My Assignments</span></div>
+        <div class="card-body">
+          <table>
+            <thead><tr><th>Subject</th><th>Title</th><th>Due Date</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Science</td><td>Chapter 5 – Light & Optics</td><td>Jun 5</td><td><span class="badge pending">Pending</span></td></tr>
+              <tr><td>Social Studies</td><td>Map Work – Rivers of India</td><td>Jun 7</td><td><span class="badge pending">Pending</span></td></tr>
+              <tr><td>English</td><td>Grammar Exercise – Ch 8</td><td>Jun 9</td><td><span class="badge pending">Pending</span></td></tr>
+              <tr><td>Math</td><td>Exercise 4.3 – Fractions</td><td>May 30</td><td><span class="badge pass">Submitted</span></td></tr>
+              <tr><td>Hindi</td><td>Nibandh – Mera Desh</td><td>May 28</td><td><span class="badge pass">Submitted</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTICES -->
+    <div class="page" id="page-notices">
+      <div class="card">
+        <div class="card-header"><span class="card-title">📢 Notice Board</span></div>
+        <div class="card-body">
+          <div class="notice-item urgent"><div style="font-weight:700;">🚨 PTM Scheduled — June 5, 2026</div><div style="font-size:.75rem;color:var(--muted);">All parents must attend · 2 days ago</div></div>
+          <div class="notice-item"><div style="font-weight:700;">📚 Summer Vacation: June 15 – July 10</div><div style="font-size:.75rem;color:var(--muted);">School will reopen July 11 · 5 days ago</div></div>
+          <div class="notice-item"><div style="font-weight:700;">🏆 Annual Sports Day — November 2026</div><div style="font-size:.75rem;color:var(--muted);">Registrations open · 1 week ago</div></div>
+          <div class="notice-item"><div style="font-weight:700;">📋 Term 2 Exam Schedule Released</div><div style="font-size:.75rem;color:var(--muted);">Check with class teacher · 2 weeks ago</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEES -->
+    <div class="page" id="page-fees">
+      <div class="card">
+        <div class="card-header"><span class="card-title">💰 Fee Status</span></div>
+        <div class="card-body">
+          <div style="text-align:center;padding:1.5rem;background:linear-gradient(135deg,#d1fae5,#a7f3d0);border-radius:12px;margin-bottom:1.25rem;">
+            <div style="font-size:2rem;">✅</div>
+            <div style="font-size:1.2rem;font-weight:800;color:#065f46;margin-top:.5rem;">Fee Paid for 2025-26</div>
+            <div style="color:#047857;font-size:.88rem;margin-top:.25rem;">Annual Fee: ₹80,000 · Class VI</div>
+          </div>
+          <table>
+            <thead><tr><th>Month</th><th>Amount</th><th>Date Paid</th><th>Method</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>April 2026</td><td>₹7,500</td><td>1 Apr</td><td>UPI</td><td><span class="badge pass">Paid</span></td></tr>
+              <tr><td>May 2026</td><td>₹7,500</td><td>2 May</td><td>UPI</td><td><span class="badge pass">Paid</span></td></tr>
+              <tr><td>June 2026</td><td>₹7,500</td><td>—</td><td>—</td><td><span class="badge pending">Due</span></td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:1rem;text-align:center;">
+            <button style="background:var(--primary);color:#fff;border:none;padding:.75rem 2rem;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:700;cursor:pointer;" onclick="showToast('Redirecting to payment...')">Pay June Fee ₹7,500</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="page" id="page-profile">
+      <div class="card">
+        <div class="card-header"><span class="card-title">👤 My Profile</span></div>
+        <div class="card-body">
+          <div style="display:flex;align-items:center;gap:1.5rem;margin-bottom:1.5rem;">
+            <div style="width:80px;height:80px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff;font-weight:800;">A</div>
+            <div><div style="font-size:1.3rem;font-weight:800;">Aman Kumar</div><div style="color:var(--muted);font-size:.88rem;">Class VI-A · Roll No. 001</div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div class="form-group"><label>Full Name</label><input value="Aman Kumar" readonly/></div>
+            <div class="form-group"><label>Roll Number</label><input value="001" readonly/></div>
+            <div class="form-group"><label>Class</label><input value="VI-A" readonly/></div>
+            <div class="form-group"><label>Date of Birth</label><input value="2013-03-15" type="date" readonly/></div>
+            <div class="form-group"><label>Father's Name</label><input value="Suresh Kumar" readonly/></div>
+            <div class="form-group"><label>Phone</label><input value="9876543210" readonly/></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<footer>
-    <p>&copy; 2026 Jayant Academy Student Portal | All Rights Reserved</p>
-    <a href="index.html" style="color: white; text-decoration: none; margin-left: 20px;"><i class="fas fa-home"></i> Back to Website</a>
-</footer>
-
+<div id="toast"></div>
 <script>
-function studentLogin() {
-    const rollno = document.getElementById('rollno').value;
-    const password = document.getElementById('password').value;
-    
-    if (rollno.length > 0 && password.length > 5) {
-        document.getElementById('loginSection').classList.add('hidden');
-        document.getElementById('dashboardSection').classList.remove('hidden');
-    } else {
-        alert('Invalid credentials!');
-    }
-}
-
-function logout() {
-    document.getElementById('loginSection').classList.remove('hidden');
-    document.getElementById('dashboardSection').classList.add('hidden');
-}
+  function doLogin(){document.getElementById('loginOverlay').style.display='none';}
+  function doLogout(){document.getElementById('loginOverlay').style.display='flex';}
+  function showPage(id,el){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+    document.getElementById('page-'+id).classList.add('active');
+    if(el)el.classList.add('active');
+    const t={dashboard:'Dashboard',results:'My Results',attendance:'Attendance',timetable:'Timetable',assignments:'Assignments',notices:'Notices',fees:'Fee Status',profile:'My Profile'};
+    document.getElementById('pageTitle').textContent=t[id]||id;
+  }
+  function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
 </script>
-
 </body>
 </html>
